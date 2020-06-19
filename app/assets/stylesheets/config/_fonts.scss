@@ -1,8 +1,9 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700|Raleway:500|Great+Vibes|
+  Bubblegum+Sans|MMerriweather+Sans:wght@400;800&display=swap');
+@import url(//db.onlinewebfonts.com/c/605c1c612570275f24508913462da771?family=Radikal);
 // Define fonts for body and headers
-$body-font: "Work Sans", "Helvetica", "sans-serif";
+$body-font: "Raleway", "Raileway", "Helvetica";
 $headers-font: "Nunito", "Helvetica", "sans-serif";
 
 // To use a font file (.woff) uncomment following lines
@@ -14,3 +15,20 @@ $headers-font: "Nunito", "Helvetica", "sans-serif";
 //        font-url('FontFile.ttf') format('truetype')
 // }
 // $my-font: "Font Name";
+
+@font-face {
+  font-family: 'Proxima';
+  src: url('/assets/fonts/FontsFree-Net-Proxima-Nova-Light.otf');
+  font-family: 'Neosans';
+  src: url('/assets/fonts/Neo Sans Std Regular.otf');
+}
+
+@font-face {
+  font-family: "Radikal";
+  src: url("//db.onlinewebfonts.com/t/605c1c612570275f24508913462da771.eot");
+  src: url("//db.onlinewebfonts.com/t/605c1c612570275f24508913462da771.eot?#iefix") format("embedded-opentype"),
+  url("//db.onlinewebfonts.com/t/605c1c612570275f24508913462da771.woff2") format("woff2"),
+  url("//db.onlinewebfonts.com/t/605c1c612570275f24508913462da771.woff") format("woff"),
+  url("//db.onlinewebfonts.com/t/605c1c612570275f24508913462da771.ttf") format("truetype"),
+  url("//db.onlinewebfonts.com/t/605c1c612570275f24508913462da771.svg#Radikal") format("svg");
+}

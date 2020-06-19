@@ -1,0 +1,8 @@
+<div class="container">
+  <%= simple_form_for(@tool) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :tool_photo, as: :file %>
+    <%= f.submit class: 'btn btn-lg btn-primary'%>
+  <% end %>
+</div>
+

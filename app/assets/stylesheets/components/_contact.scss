@@ -1,0 +1,115 @@
+.form-group input, .form-group textarea {
+  background: #F3F4F6;
+  border-raidus: 5px 5px 5px 5px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  padding: 16px;
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+@media (max-width: 981px){
+  .contact {
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
+}
+
+#new_contact > div.actions > input {
+  box-sizing: border-box;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  user-select: none;
+  outline: 0;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid $or;
+  border-radius: 5px;
+  background: #fff;
+  color: #000;
+  position: absolute;
+  right: 0;
+  box-shadow: 0px 5px 10px 5px rgba(#F3F4F6,0.8);
+  animation: shadow 2s infinite;
+    &:hover {
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    background-color: #F6D765;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    user-select: none;
+    background-image: none;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    box-shadow: $box-shadow;
+    font-size: 16px;
+    cursor: pointer;
+    }
+}
+
+.social-icons {
+  display: flex;
+}
+
+.social-place {
+  display: block;
+}
+
+.social-icons a{
+  color: black;
+  opacity: 0.2;
+  text-decoration: none;
+  font-size: 32px;
+  padding: 0px 10px;
+}
+
+.social-icons a:hover{
+  color: #F6D765;
+  opacity: 1;
+}
+
+@keyframes shadow {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba($or, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba($or, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba($or, 0);
+  }
+}
+
+.message-error {
+  font-size: 10px;
+  color: red;
+}
+
+.form-control.is-valid {
+  background-image: none;
+}

@@ -1,6 +1,8 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: transparent;
+  font-family: 'Raleway', sans-serif;
+  animation: 1s ease-out 0s 1 navbarInFromTop;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -10,3 +12,33 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.nav-link:hover {
+  color: $or!important;
+}
+
+.navbar-light .navbar-toggler {
+  color: $or;
+  border-color: $or;
+}
+
+.navbar-toggler-icon {
+  color: $or;
+}
+
+.navbar-collapse > ul {
+  text-align: end;
+}
+
+@keyframes navbarInFromTop {
+  0% {
+    transform: translateY(-100%);
+
+  }
+  100% {
+    transform: translateY(0);
+
+  }
+}
+
+

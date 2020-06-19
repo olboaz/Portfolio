@@ -1,0 +1,14 @@
+<div class="container mt-5">
+  <div class="tools-title">
+    <h2>id</h2>
+    <h2>name</h2>
+    <h2>photo</h2>
+  </div>
+  <div class="tools-row">
+    <% @tools.each do |tool| %>
+      <h2><%= tool.id %></h2>
+      <h2 class="title"><%= tool.name.capitalize %></h2>
+      <%= cl_image_tag tool.tool_photo.key, width: 50, crop: :fit %>
+    <% end %>
+  </div>
+</div>

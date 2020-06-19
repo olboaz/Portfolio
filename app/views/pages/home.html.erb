@@ -1,2 +1,212 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <div data-ix="scroll-appear" class="row section--default">
+    <div class="master-container home-vertical-height-adjust">
+      <div id="about" data-scroll="0.6" class="section-intro">
+        <div class="section-intro__heading">A propos</div>
+          <div class="separator-dashes">
+            <div class="separator-dash-line"></div>
+            <div class="separator-dash-line"></div>
+            <div class="separator-dash-line"></div>
+          </div>
+      </div>
+
+      <div class="about-container">
+        <div class="about-img-container">
+          <%= image_tag "patrice.jpeg", alt:"Mon image", width:"533"  %>
+        </div>
+        <div class="about-content">
+          <div class="main-headline main-headline--offset">
+            <h1 class="main-headline__headline left-aligned">Patrice, Web Développeur Fullstack, Data Analyste &amp; Formateur.</h1>
+            <div class="main-headline__separator left-aligned"></div>
+          </div>
+          <p class="p-large">
+            <span class="text-span-24">My goal is to help people build better and more meaningful products.</span> With a strong background in UX &amp; UI design, I make use of iterative hands-on processes and follow a human-centric design approach. My work ranges from strategic planning and rough prototyping in the early stages, to creating a strong visual design language, all of which increases the value of both the brand and the product.
+          <button>...</button>
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- ok -->
+
+<!--     <div class="col-4">
+      <h1>Data Analyste</h1>
+        <p>I build cool web applications. I have a strong experience in digital marketing working for global companies like adidas and Under Armour. I also love to draw nice illustrations. I can help you design, code and promote all your digital content.</p>
+    </div>
+  </div>  -->
+
+  <div class="master-container home-vertical-height-adjust" id="services">
+    <div class="section--default" data-ix="scroll-appear">
+      <div id="about" data-scroll="0.6" class="section-intro">
+        <div class="section-intro__heading">Services</div>
+        <div class="separator-dashes">
+          <div class="separator-dash-line"></div>
+          <div class="separator-dash-line"></div>
+          <div class="separator-dash-line"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="service-cards">
+          <div class="service-card">
+            <i class="fas fa-code"></i><br><p>Web<br>Development</p>
+          </div>
+          <div class="service-card">
+            <i class="fas fa-chart-bar"></i><br><p>Data<br>visualisation</p>
+          </div>
+          <div class="service-card">
+            <i class="fas fa-database"></i><br><p>Data<br>analyse</p>
+          </div>
+          <div class="service-card">
+            <i class="fas fa-graduation-cap"></i><br><p>Formation<br></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!-- ok -->
+
+  <div class="master-container home-vertical-height-adjust" id="portfolio">
+    <div class="section--default" data-ix="scroll-appear">
+      <div id="about" data-scroll="0.6" class="section-intro">
+        <div class="section-intro__heading">Portfolio</div>
+        <div class="separator-dashes">
+          <div class="separator-dash-line"></div>
+          <div class="separator-dash-line"></div>
+          <div class="separator-dash-line"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="portfolio-cards">
+          <% @projects.each do |project| %>
+            <div class="portfolio-card">
+              <%= link_to project.url, target: "_blank" do %>
+                <div class="portfolio-img">
+                  <%= cl_image_tag project.project_photo.key, width: 648, crop: :fit %>
+                </div>
+                <div class="portfolio-intro">
+                  <h6><%= project.name %></h6>
+                  <p><%= project.project_type %></p>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!-- ok -->
+
+  <div class="master-container home-vertical-height-adjust" id="skills">
+    <div class="section--default" data-ix="scroll-appear">
+      <div id="about" data-scroll="0.6" class="section-intro">
+        <div class="section-intro__heading">Compétences</div>
+        <div class="separator-dashes">
+          <div class="separator-dash-line"></div>
+          <div class="separator-dash-line"></div>
+          <div class="separator-dash-line"></div>
+        </div>
+      </div>
+
+      <div class="skill-cards">
+        <% @tools.each do |tool| %>
+          <div class="skill-card">
+              <div class="skill-img" title="<%= tool.name.upcase %>">
+                <%= cl_image_tag tool.tool_photo.key, width: 648, crop: :fit %>
+              </div>
+               <div class="overlay"><%= tool.name.upcase %></div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<!-- ok -->
+
+  <div class="master-container home-vertical-height-adjust" id="contact">
+    <div class="section--default" data-ix="scroll-appear">
+      <div id="about" data-scroll="0.6" class="section-intro">
+        <div class="section-intro__heading">Contact</div>
+        <div class="separator-dashes">
+          <div class="separator-dash-line"></div>
+          <div class="separator-dash-line"></div>
+          <div class="separator-dash-line"></div>
+        </div>
+      </div>
+
+      <div class="contact">
+        <div>
+          <h2>Me contacter</h2>
+          <p>Une question ? Un projet ? Une formation ? ou un poste de rêve à me proposer ?<br> Contactez moi, je vous réponds !</p>
+          <hr>
+          <div class="social">
+            <div class="social-icons">
+              <a href="https://github.com/olboaz" target="_blank"><i class="fab fa-github"></i></a>
+              <a href="https://www.linkedin.com/in/patrice-jaszczynski-66a18023/" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <a href="mailto:spalkes04@gmail.com?subject=Hello Patrice j'ai une demande !"><i class="far fa-envelope"></i></a>
+              <a href="https://www.google.fr/maps/place/92300+Levallois-Perret/@48.8946561,2.2786462,15z/data=!3m1!4b1!4m5!3m4!1s0x47e66f83b73cffd3:0x40b82c3688b3db0!8m2!3d48.893217!4d2.287864" target="_blank"><i class="fas fa-map-marker-alt"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="contact-form">
+            <%= simple_form_for(@contact) do |f| %>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <%= f.input :name, label: false, placeholder: "Nom et Prénom", class: "form-control"%>
+                    <% if @name_error %>
+                      <span class="message-error"><%= @name_error.first %></span>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <%= f.input :email,  label: false, placeholder: "Adresse email", class: "form-control" %>
+                    <% if @email_error %>
+                      <span class="message-error"><%= @email_error.first %></span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.input :message,  label: false, as: :text, placeholder: "Votre message", class: "form-control" %>
+                  <% if @message_error %>
+                    <span class="message-error"><%= @message_error.first %></span>
+                  <% end %>
+              </div>
+              <div class="actions">
+                <%= f.submit "Contactez-moi"%>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- ok -->
+
+</div>
+
+<script src="https://d1tdp7z6w94jbb.cloudfront.net/js/jquery-3.3.1.min.js" type="text/javascript" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><script src="https://uploads-ssl.webflow.com/58ff19c91dfbf33afe47b6d9/js/webflow.3122cdf84.js" type="text/javascript"></script>
+<script>
+  $('body').jpreLoader({
+
+    showSplash: true
+
+  }, function() {
+
+    //Show the page once images are loaded
+
+      $('#face').animateHome();
+      $('#face').resizeFace();
+
+
+  });
+
+</script>

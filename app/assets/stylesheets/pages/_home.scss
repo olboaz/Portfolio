@@ -1,1 +1,104 @@
 // Specific CSS for your home-page
+
+h1 {
+  font-family: 'Radikal', sans-serif;
+  font-size: 60px;
+  color: #111111;
+  line-height: 84px;
+  letter-spacing: -0.07em;
+    text-rendering: optimizelegibility;
+  font-weight: normal;
+}
+
+p {
+  font-family: 'Proxima', sans-serif;
+}
+
+
+.section-intro {
+  margin-bottom: 32px;
+}
+
+.separator-dashes {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100px;
+  height: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 5px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.separator-dash-line {
+  width: 15px;
+  height: 2px;
+  margin-left: -4px;
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#000),to(#000));
+  background-image: linear-gradient(180deg,#FFD700,#FFD700);
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.master-container {
+  display: block;
+  max-width: 1140px;
+  padding: 80px 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  -ms-flex-pack: center;
+  -ms-flex-align: stretch;
+}
+
+.letter, .section-intro__heading {
+  text-transform: uppercase;
+  color: #000;
+}
+
+.section-intro__heading {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+
+.section--default {
+  opacity: 1;
+  transform: translateX(0px) translateY(0px) translateZ(0px);
+  transition: opacity 1000ms ease 0s, transform 700ms ease-out 0s;
+}
+
+
+html.w-mod-js [data-ix=scroll-appear] {
+  opacity: 0;
+  -webkit-transform: translate(0,120px);
+  -ms-transform: translate(0,120px);
+  transform: translate(0,120px);
+}
+
+@keyframes introInFromleft {
+  0% {
+    transform: translateX(-100%);
+
+  }
+  100% {
+    transform: translateX(0);
+
+  }
+}
+
+
+
+
+
