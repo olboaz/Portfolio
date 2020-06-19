@@ -47,10 +47,13 @@
   .skill-card:hover .overlay {
     display:none;
   }
+  .skill-cards {
+    justify-content: center;
+  }
 }
 
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .skill-card {
     width: 80px;
     height: 80px;
@@ -58,5 +61,8 @@
   }
   .skill-card:hover .overlay {
     display:none;
+  }
+  .skill-cards {
+    justify-content: center;
   }
 }

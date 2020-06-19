@@ -31,19 +31,18 @@ p {
   padding-right: 5px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
-  -ms-flex-pack: center;
   justify-content: center;
 }
 
 .separator-dash-line {
-  width: 15px;
+  width: 32px;
   height: 2px;
-  margin-left: -4px;
+  // margin-left: -4px;
   background-image: -webkit-gradient(linear,left top,left bottom,from(#000),to(#000));
-  background-image: linear-gradient(180deg,#FFD700,#FFD700);
-  -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+  background-image: linear-gradient(180deg,black,black);
+  // -webkit-transform: rotate(-45deg);
+  // -ms-transform: rotate(-45deg);
+  // transform: rotate(-45deg);
 }
 
 .master-container {
