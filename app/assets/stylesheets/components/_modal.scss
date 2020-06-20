@@ -1,0 +1,20 @@
+.modal-header {
+  align-items: center;
+  border-bottom: none;
+  img {
+    width: 50px;
+    border-radius: 50%;
+  }
+  h5 {
+    margin-left: 10px;
+  }
+}
+
+.modal-body {
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(to bottom right, $or 0%, white 50%, $or 100%);
+  border-image-slice: 1;
+  margin: 1rem;
+  padding: 10px;
+}
