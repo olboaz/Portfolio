@@ -6,14 +6,4 @@ class ContactMailerPreview < ActionMailer::Preview
     contact = Contact.new
     ContactMailer.general_message(contact)
   end
-
-  def hello
-    mail(
-      :subject => 'Hello from Postmark',
-      :to  => 'spalkes04@gmail.com',
-      :from => 'sender@example.org',
-      :html_body => '<strong>Hello</strong> dear Postmark user.',
-      :track_opens => 'true')
-  end
-
 end

@@ -7,6 +7,6 @@ class ContactMailer < ApplicationMailer
   #
   def general_message(contact)
     @contact = contact # Instance variable => available in view
-    mail(to: 'contact@pjazczynski.fr', subject: 'Demande de contact')
+    mail(to: 'contact@pjaszczynski.fr', subject: 'Demande de contact')
   end
 end
