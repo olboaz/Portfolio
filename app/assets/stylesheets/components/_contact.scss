@@ -12,13 +12,6 @@
   grid-gap: 20px;
 }
 
-@media (max-width: 981px){
-  .contact {
-    grid-template-columns: 1fr;
-    grid-gap: 20px;
-  }
-}
-
 #new_contact > div.actions > input {
   box-sizing: border-box;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
@@ -112,4 +105,22 @@
 
 .form-control.is-valid {
   background-image: none;
+}
+
+
+
+@media (max-width: 992px){
+  .contact {
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 480px) {
+  .form-group input, .form-group textarea {
+  font-size: 12px;
+  }
 }
