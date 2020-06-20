@@ -16,8 +16,15 @@
 .about-content > p > button {
   background-color: transparent;
   border: 1px solid $or;
-
+  border-radius: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
 }
+
+.about-content > p >  button:focus {
+  outline: 3px solid gold;
+}
+
 
 .about-img-container {
   width: 50%;
