@@ -13,10 +13,6 @@
   width: 40px;
 }
 
-.nav-link:hover {
-  color: $or!important;
-}
-
 .navbar-light .navbar-toggler {
   color: $or;
   border-color: $or;
@@ -41,4 +37,22 @@
   }
 }
 
+.nav-link {
+    display: inline-block;
+    color: $or;
+    text-decoration: none;
+}
 
+.nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: $or;
+    transition: width .3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+    //transition: width .3s;
+}
