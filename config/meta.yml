@@ -1,4 +1,4 @@
 meta_product_name: "Patrice - Portfolio"
-meta_title: "Ici mon portfolio - Patrice Jaszczynski"
+meta_title: "Mon portfolio - Patrice Jaszczynski"
 meta_description: "Besoin d'aide, d'un service, n'hésitez pas à me contacter"
-meta_image: "patrice.jpeg" # should exist in `app/assets/images/`
+meta_image: "profil.png" # should exist in `app/assets/images/`
