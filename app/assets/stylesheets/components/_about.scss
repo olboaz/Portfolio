@@ -13,7 +13,7 @@
   animation: 2s ease 0s 1 introInFromleft;
 }
 
-.intro-content > p > button {
+.intro-desc > p > button {
   background-color: transparent;
   border: 1px solid $or;
   border-radius: 5px;
@@ -24,12 +24,12 @@
   }
 }
 
-.intro-content > p >  button:focus {
+.intro-desc > p >  button:focus {
   outline: 3px solid gold;
 }
 
 
-.intro-img-container {
+.intro-image {
   width: 50%;
   margin-top: 55px;
   margin-right: 56px;
@@ -45,11 +45,11 @@ img {
   display: inline-block;
 }
 
-.intro-content {
+.intro-desc {
   width: 50%;
 }
 
-.intro-img-container > img {
+.intro-image > img {
   border-radius: 5px 5px 5px 5px;
 }
 
@@ -145,7 +145,7 @@ img {
   .master-container {
     padding: 40px 72px;
   }
-  .intro-img-container {
+  .intro-image {
     width: 50%;
     margin-top: 0;
   }
@@ -154,7 +154,7 @@ img {
     margin-bottom: 128px;
     margin-left: 56%;
   }
-  .intro-content {
+  .intro-desc {
     width: 100%;
   }
  .slide-container {
@@ -178,7 +178,7 @@ img {
     padding-right: 32px;
     padding-left: 32px;
   }
-  .intro-img-container {
+  .intro-image {
     width: 280px;
     margin-bottom: 16px;
   }
@@ -202,10 +202,10 @@ img {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
   }
-  .intro-img-container {
+  .intro-image {
     margin-bottom: 0;
   }
-  .intro-img-container, .case-intro--left-box {
+  .intro-image, .case-intro--left-box {
     width: 100%;
     margin-right: 0;
   }
