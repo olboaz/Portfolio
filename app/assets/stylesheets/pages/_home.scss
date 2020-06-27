@@ -19,30 +19,21 @@ p {
   margin-bottom: 32px;
 }
 
-.separator-dashes {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+.lines {
   display: flex;
   width: 100px;
   height: 10px;
   margin-right: auto;
   margin-left: auto;
   padding-right: 5px;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
   justify-content: center;
 }
 
-.separator-dash-line {
+.line {
   width: 32px;
   height: 2px;
-  // margin-left: -4px;
   background-image: -webkit-gradient(linear,left top,left bottom,from(#000),to(#000));
   background-image: linear-gradient(180deg,black,black);
-  // -webkit-transform: rotate(-45deg);
-  // -ms-transform: rotate(-45deg);
-  // transform: rotate(-45deg);
 }
 
 .master-container {
