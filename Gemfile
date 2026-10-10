@@ -23,7 +23,7 @@ gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'letter_opener', group: :development
-gem 'cloudinary', '~> 1.12.0'
+gem 'cloudinary', '1.29.0'
 gem 'postmark-rails'
 
 # Use Active Storage variant

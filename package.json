@@ -1,12 +1,17 @@
 {
   "name": "Portfolio",
   "private": true,
+  "scripts": {
+    "build": "esbuild app/javascript/esbuild/application.js --bundle --platform=browser --format=iife --minify --outfile=app/assets/builds/esbuild_application.js",
+    "build:watch": "esbuild app/javascript/esbuild/application.js --bundle --platform=browser --format=iife --sourcemap --outfile=app/assets/builds/esbuild_application.js --watch"
+  },
   "dependencies": {
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.4",
     "bootstrap": "^4.5.0",
+    "esbuild": "0.21.5",
     "jquery": "^3.5.1",
     "node-sass": "^8.0.0",
     "popper.js": "^1.16.1",

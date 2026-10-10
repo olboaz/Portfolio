@@ -41,3 +41,6 @@ yarn-debug.log*
 .DS_Store
 .env*
 .yarn/releases/*-temp.cjs
+# esbuild generated JavaScript
+/app/assets/builds/*
+!/app/assets/builds/.keep
