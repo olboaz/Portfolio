@@ -1,0 +1,66 @@
+table {
+  display: grid;
+  grid-template-columns:
+    minmax(90px, 1fr)
+    minmax(180px, 2fr)
+    minmax(90px, 1fr)
+    minmax(90px, 0.5fr)
+    minmax(90px, 0.5fr)
+    minmax(60px, 0.5fr);
+  thead,
+  tbody,
+  tr {
+    display: contents;
+  }
+  a {
+    text-decoration: none !important;
+  }
+  .link-view {
+    color: #198754;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .link-edit {
+    color: #0d6efd;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  .link-destroy {
+    color: red;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+/* Tableaux de l'administration */
+
+table.admin-table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  grid-template-columns: none;
+
+  thead {
+    display: table-header-group;
+  }
+
+  tbody {
+    display: table-row-group;
+  }
+
+  tr {
+    display: table-row;
+  }
+
+  th,
+  td {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}

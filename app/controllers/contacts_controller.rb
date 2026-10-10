@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
   skip_before_action :authenticate_user!, only: :create
+  skip_after_action :verify_authorized, only: :create
 
 def create
   @contact = Contact.new(contact_params)

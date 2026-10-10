@@ -1,39 +1,63 @@
 class ToolsController < ApplicationController
+  before_action :set_tool, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tools = Tool.all
+    authorize Tool
+    @tools = policy_scope(Tool)
   end
 
   def show
-    @tool = Tool.find(params[:id])
+    authorize @tool
   end
 
   def new
     @tool = Tool.new
+    authorize @tool
   end
 
   def create
     @tool = Tool.new(tool_params)
+    authorize @tool
+
     if @tool.save
-      redirect_to tools_path
+      redirect_to tool_path(@tool)
     else
       render :new
     end
   end
 
   def edit
-    @tool = Tool.find(params[:id])
+    authorize @tool
   end
 
   def update
+    authorize @tool
+
+    if @tool.update(tool_params)
+      redirect_to tool_path(@tool)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
     @tool = Tool.find(params[:id])
-    @tool.update
-    redirect_to tool_path(@tool)
+    authorize @tool
+
+    if @tool.destroy
+      redirect_to tools_path, notice: "L'outil a été supprimé."
+    else
+      redirect_to tools_path, alert: "Impossible de supprimer l'outil."
+    end
   end
 
   private
 
+  def set_tool
+    @tool = Tool.find(params[:id])
+  end
+
   def tool_params
-    params.require(:tool).permit(:name, :tool_photo)
+    params.require(:tool).permit(:name, :tool_type, :tool_photo)
   end
 end

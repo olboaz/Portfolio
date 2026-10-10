@@ -1,5 +1,27 @@
-<div class="container">
-  <h2 class="title"><%= @tool.name %>
-  <%= cl_image_tag @tool.tool_photo.key, width: 648, crop: :fit %>
-  </h2>
+
+<div class="container py-5">
+  <div class="text-center">
+
+    <h1 class="mb-4"><%= @tool.name %></h1>
+
+    <% if @tool.tool_photo.attached? %>
+      <%= cl_image_tag @tool.tool_photo.key,
+          width: 240,
+          height: 240,
+          crop: :fit,
+          alt: @tool.name,
+          class: "img-fluid" %>
+    <% end %>
+
+    <div class="mt-4">
+      <%= link_to "Retour aux outils",
+          tools_path,
+          class: "btn btn-outline-secondary" %>
+
+      <%= link_to "Modifier",
+          edit_tool_path(@tool),
+          class: "btn btn-primary" %>
+    </div>
+
+  </div>
 </div>
