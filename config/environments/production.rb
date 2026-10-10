@@ -43,7 +43,10 @@ Rails.application.configure do
 
   # postmark configuration
   config.action_mailer.delivery_method     = :postmark
-  config.action_mailer.postmark_settings   = { api_token: ENV['POSTMARK_API_TOKEN'] }
+  config.action_mailer.postmark_settings = {
+    api_token: ENV['POSTMARK_API_TOKEN'],
+    http_ssl_version: :TLSv1_2
+  }
   config.action_mailer.default_url_options = { host: "pjaszczynski-portfolio.herokuapp.com" }
 
   # Mount Action Cable outside main process or domain.
