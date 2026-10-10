@@ -1,0 +1,161 @@
+
+<div class="container py-5 admin-content">
+
+  <%# ===== EN-TÊTE ===== %>
+  <div class="admin-header">
+    <div>
+      <h1>Administration</h1>
+      <p class="text-muted mb-0">
+        Gestion de mon portfolio
+      </p>
+    </div>
+
+    <%= link_to "Voir mon portfolio",
+        root_path,
+        class: "btn btn-outline-secondary" %>
+  </div>
+
+  <div class="d-flex justify-content-end mb-4">
+    <%= link_to "Se déconnecter",
+        destroy_user_session_path,
+        method: :delete,
+        data: { confirm: "Voulez-vous vous déconnecter ?" },
+        class: "btn btn-outline-danger" %>
+  </div>
+  <%# ===== INDICATEURS ===== %>
+  <div class="row mb-4">
+
+    <div class="col-md-6 mb-3">
+      <div class="admin-stat-card">
+        <div class="admin-stat-icon">
+          <i class="fas fa-folder-open"></i>
+        </div>
+
+        <div>
+          <p class="text-muted mb-1">Projets</p>
+          <h2><%= @projects_count %></h2>
+        </div>
+
+        <%= link_to "Gérer",
+            projects_path,
+            class: "btn btn-sm btn-outline-primary ml-auto" %>
+      </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <div class="admin-stat-card">
+        <div class="admin-stat-icon">
+          <i class="fas fa-tools"></i>
+        </div>
+
+        <div>
+          <p class="text-muted mb-1">Outils</p>
+          <h2><%= @tools_count %></h2>
+        </div>
+
+        <%= link_to "Gérer",
+            tools_path,
+            class: "btn btn-sm btn-outline-primary ml-auto" %>
+      </div>
+    </div>
+
+  </div>
+
+  <%# ===== ACTIONS RAPIDES ===== %>
+  <div class="admin-section mb-4">
+    <h3 class="mb-3">Actions rapides</h3>
+
+    <div class="d-flex flex-wrap">
+      <%= link_to "Ajouter un projet",
+          new_project_path,
+          class: "btn btn-primary mr-2 mb-2" %>
+
+      <%= link_to "Ajouter un outil",
+          new_tool_path,
+          class: "btn btn-outline-primary mr-2 mb-2" %>
+    </div>
+  </div>
+
+  <%# ===== DERNIERS PROJETS ===== %>
+  <div class="admin-section mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="mb-0">Derniers projets</h3>
+
+      <%= link_to "Voir tous les projets",
+          projects_path,
+          class: "btn btn-sm btn-outline-secondary" %>
+    </div>
+
+    <% if @recent_projects.any? %>
+      <div class="admin-table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Projet</th>
+              <th>Catégorie</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @recent_projects.each do |project| %>
+              <tr>
+                <td><strong><%= project.name %></strong></td>
+                <td><%= project.project_type %></td>
+                <td>
+                  <%= link_to "Modifier",
+                      edit_project_path(project),
+                      class: "btn btn-sm btn-outline-primary" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <p class="text-muted">Aucun projet enregistré.</p>
+    <% end %>
+  </div>
+
+  <%# ===== DERNIERS OUTILS ===== %>
+  <div class="admin-section">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h3 class="mb-0">Derniers outils</h3>
+
+      <%= link_to "Voir tous les outils",
+          tools_path,
+          class: "btn btn-sm btn-outline-secondary" %>
+    </div>
+
+    <% if @recent_tools.any? %>
+      <div class="admin-table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Outil</th>
+              <th>Catégorie</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @recent_tools.each do |tool| %>
+              <tr>
+                <td><strong><%= tool.name %></strong></td>
+                <td><%= Array(tool.tool_type).join(", ") %></td>
+                <td>
+                  <%= link_to "Modifier",
+                      edit_tool_path(tool),
+                      class: "btn btn-sm btn-outline-primary" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    <% else %>
+      <p class="text-muted">Aucun outil enregistré.</p>
+    <% end %>
+  </div>
+
+</div>

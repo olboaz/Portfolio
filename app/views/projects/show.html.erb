@@ -1,0 +1,81 @@
+
+<div class="container py-5 admin-content">
+
+  <%# ===== EN-TÊTE ===== %>
+  <div class="d-flex justify-content-between align-items-start mb-4">
+    <div>
+      <h1 class="mb-2"><%= @project.name %></h1>
+
+      <% if @project.project_type.present? %>
+        <span class="badge badge-secondary">
+          <%= @project.project_type %>
+        </span>
+      <% end %>
+    </div>
+
+    <div class="admin-actions">
+      <%= link_to "Modifier",
+          edit_project_path(@project),
+          class: "btn btn-primary" %>
+
+      <%= link_to "Retour",
+          projects_path,
+          class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
+
+  <%# ===== IMAGE PRINCIPALE ===== %>
+  <% if @project.project_photo.attached? %>
+    <div class="mb-4 text-center">
+      <%= cl_image_tag @project.project_photo.key,
+          width: 900,
+          crop: :limit,
+          class: "img-fluid rounded",
+          alt: @project.name %>
+    </div>
+  <% end %>
+
+  <%# ===== DESCRIPTION ===== %>
+  <% if @project.description.present? %>
+    <div class="mb-4">
+      <h3>Description</h3>
+      <div class="text-muted">
+        <%= simple_format(@project.description) %>
+      </div>
+    </div>
+  <% end %>
+
+  <%# ===== URL DU PROJET ===== %>
+  <% if @project.url.present? %>
+    <div class="mb-4">
+      <h3>Lien du projet</h3>
+
+      <%= link_to @project.url,
+          @project.url,
+          target: "_blank",
+          rel: "noopener noreferrer",
+          class: "btn btn-outline-primary" %>
+    </div>
+  <% end %>
+
+  <%# ===== IMAGES SUPPLÉMENTAIRES ===== %>
+  <% if @project.photos.attached? %>
+    <div class="mt-5">
+      <h3 class="mb-3">Galerie du projet</h3>
+
+      <div class="row">
+        <% @project.photos.each do |photo| %>
+          <div class="col-md-4 mb-3">
+            <%= cl_image_tag photo.key,
+                width: 400,
+                height: 260,
+                crop: :fit,
+                class: "img-fluid rounded",
+                alt: @project.name %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+</div>

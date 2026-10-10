@@ -1,0 +1,69 @@
+
+<div class="container py-5 admin-content">
+
+  <div class="admin-header">
+    <div>
+      <h1>Gestion des projets</h1>
+      <p class="text-muted">Administration du portfolio</p>
+    </div>
+
+    <%= link_to "Ajouter un projet",
+        new_project_path,
+        class: "btn btn-primary" %>
+  </div>
+
+  <div class="admin-table-wrapper">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Projet</th>
+          <th>Catégorie</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @projects.each do |project| %>
+          <tr>
+            <td>
+              <% if project.project_photo.attached? %>
+                <%= image_tag project.project_photo,
+                    class: "admin-project-image" %>
+              <% else %>
+                <span class="text-muted">Aucune image</span>
+              <% end %>
+            </td>
+
+            <td>
+              <strong><%= project.name %></strong>
+            </td>
+
+            <td><%= project.project_type %></td>
+
+            <td>
+              <div class="admin-actions">
+                <%= link_to "Modifier",
+                  edit_project_path(project),
+                  class: "btn btn-sm btn-outline-primary" %>
+
+                <%= link_to "Voir",
+                  project_path(project),
+                  class: "btn btn-sm btn-outline-secondary" %>
+
+                <%= link_to "Supprimer",
+                  project_path(project),
+                  method: :delete,
+                  data: {
+                    confirm: "Supprimer définitivement le projet « #{project.name} » ?"
+                  },
+                  class: "btn btn-sm btn-outline-danger" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

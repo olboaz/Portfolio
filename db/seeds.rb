@@ -35,17 +35,17 @@ project_photo = URI.open('https://res.cloudinary.com/dzububqki/image/upload/v159
 p4.project_photo.attach(io: project_photo, filename: "moods.jpg", content_type: "image/jpg")
 p4.save!
 
-p5 = Project.new(name: "Language R", project_type: "Data Analyse - Clustering Graphes", description: "Clustering d'un réseau de match de football américain.", url: "")
+p5 = Project.new(name: "Language R", project_type: "Data Analyse / Clustering Graphes", description: "Clustering d'un réseau de match de football américain.", url: "")
 project_photo = URI.open('https://res.cloudinary.com/dzububqki/image/upload/v1592564591/R_graphe_clustering_lhb2ve.jpg')
 p5.project_photo.attach(io: project_photo, filename: "clusteringgraphes.jpg", content_type: "image/jpg")
 p5.save!
 
-p6 = Project.new(name: "Language R", project_type: "Data Analyse - Time Series Predictive", description: "Analyse de séries temporelles en vue de faire une analyse prédictive", url: "")
+p6 = Project.new(name: "Language R", project_type: "Data Analyse / Time Series Predictive", description: "Analyse de séries temporelles en vue de faire une analyse prédictive", url: "")
 project_photo = URI.open('https://res.cloudinary.com/dzububqki/image/upload/v1592564591/R_series_temporelles_kahkdv.jpg')
 p6.project_photo.attach(io: project_photo, filename: "timeseries.jpg", content_type: "image/jpg")
 p6.save!
 
-p7 = Project.new(name: "Language R", project_type: "Data Analyse - Random Forest", description: "Classification de mails entre spam et nonspam via la méthode des forets aléatoires", url: "")
+p7 = Project.new(name: "Language R", project_type: "Data Analyse / Random Forest", description: "Classification de mails entre spam et nonspam via la méthode des forets aléatoires", url: "")
 project_photo = URI.open('https://res.cloudinary.com/dzububqki/image/upload/v1592564633/R_random_forest_spam_txz29u.jpg')
 p7.project_photo.attach(io: project_photo, filename: "rf.jpg", content_type: "image/jpg")
 p7.save!

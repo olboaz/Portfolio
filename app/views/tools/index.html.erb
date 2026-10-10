@@ -1,14 +1,73 @@
-<div class="container mt-5">
-  <div class="tools-title">
-    <h2>id</h2>
-    <h2>name</h2>
-    <h2>photo</h2>
+
+<div class="container py-5 admin-content">
+
+  <div class="admin-header">
+    <div>
+      <h1>Gestion des outils</h1>
+      <p class="text-muted">Technologies et compétences</p>
+    </div>
+
+    <%= link_to "Ajouter un outil",
+        new_tool_path,
+        class: "btn btn-primary" %>
   </div>
-  <div class="tools-row">
-    <% @tools.each do |tool| %>
-      <h2><%= tool.id %></h2>
-      <h2 class="title"><%= tool.name.capitalize %></h2>
-      <%= cl_image_tag tool.tool_photo.key, width: 50, crop: :fit %>
-    <% end %>
+
+  <div class="admin-table-wrapper">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Logo</th>
+          <th>Nom</th>
+          <th>Catégorie</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @tools.each do |tool| %>
+          <tr>
+            <td>
+              <% if tool.tool_photo.attached? %>
+                <%= cl_image_tag tool.tool_photo.key,
+                    width: 52,
+                    height: 52,
+                    crop: :fit,
+                    class: "admin-tool-image",
+                    alt: tool.name %>
+              <% else %>
+                <span class="text-muted">Aucun logo</span>
+              <% end %>
+            </td>
+
+            <td><strong><%= tool.name %></strong></td>
+
+            <td>
+              <%= Array(tool.tool_type).join(", ") %>
+            </td>
+
+            <td>
+              <div class="admin-actions">
+                <%= link_to "Modifier",
+                    edit_tool_path(tool),
+                    class: "btn btn-sm btn-outline-primary" %>
+
+                <%= link_to "Voir",
+                    tool_path(tool),
+                    class: "btn btn-sm btn-outline-secondary" %>
+
+                <%= link_to "Supprimer",
+                  tool_path(tool),
+                  method: :delete,
+                  data: {
+                    confirm: "Supprimer définitivement l'outil « #{tool.name} » ?"
+                  },
+                  class: "btn btn-sm btn-outline-danger" %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
+
 </div>
