@@ -30,3 +30,41 @@ document.addEventListener("turbolinks:load", () => {
     }
   });
 });
+
+function initBackToTop() {
+  const button = document.getElementById("back-to-top");
+  if (!button) return;
+
+  if (window.backToTopScrollHandler) {
+    window.removeEventListener("scroll", window.backToTopScrollHandler);
+  }
+
+  const updateVisibility = () => {
+    button.classList.toggle("is-visible", window.scrollY > 300);
+  };
+
+  window.backToTopScrollHandler = updateVisibility;
+
+  window.addEventListener("scroll", updateVisibility, { passive: true });
+
+  if (!button.dataset.initialized) {
+    button.dataset.initialized = "true";
+
+    button.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  }
+
+  updateVisibility();
+}
+
+document.addEventListener("turbolinks:load", initBackToTop);
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initBackToTop);
+} else {
+  initBackToTop();
+}
