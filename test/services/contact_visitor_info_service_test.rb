@@ -47,4 +47,17 @@ class ContactVisitorInfoServiceTest < ActiveSupport::TestCase
     end
   end
 
+  test "une erreur inattendue du service est propagee au controleur" do
+    request = OpenStruct.new(remote_ip: "8.8.8.8")
+
+    ContactVisitorInfoService.stub(
+      :lookup_geo,
+      ->(*) { raise RuntimeError, "Erreur inattendue" }
+    ) do
+      assert_raises(RuntimeError) do
+        ContactVisitorInfoService.call(request)
+      end
+    end
+  end
+
 end

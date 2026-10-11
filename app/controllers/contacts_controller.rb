@@ -18,7 +18,14 @@ def create
     begin
       # Récupération des informations techniques du visiteur
       # Ces informations ne sont pas enregistrées en base.
-      visitor_info = ContactVisitorInfoService.call(request)
+      visitor_info = begin
+        ContactVisitorInfoService.call(request)
+      rescue StandardError => e
+        Rails.logger.warn(
+          "Informations visiteur indisponibles : #{e.class}"
+        )
+        {}
+      end
 
       Rails.logger.info("BREVO : début de l'envoi")
 

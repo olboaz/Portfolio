@@ -34,8 +34,8 @@ class ContactVisitorInfoService
       uri.hostname,
       uri.port,
       use_ssl: true,
-      open_timeout: 2,
-      read_timeout: 2
+      open_timeout: 1,
+      read_timeout: 1
     ) do |http|
       http.get(uri.request_uri)
     end
@@ -50,7 +50,9 @@ class ContactVisitorInfoService
   end
 
   def self.resolve_hostname(ip)
-    Timeout.timeout(1) { Resolv.getname(ip) }
+    Timeout.timeout(0.5) do
+      Resolv.getname(ip)
+    end
   rescue StandardError
     "Non disponible"
   end
