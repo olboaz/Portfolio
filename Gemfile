@@ -22,7 +22,6 @@ gem 'redis', '~> 4.0'
 
 gem 'letter_opener', group: :development
 gem 'cloudinary', '1.29.0'
-gem 'postmark-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

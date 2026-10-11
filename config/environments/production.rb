@@ -40,13 +40,6 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :cloudinary
 
-
-  # postmark configuration
-  config.action_mailer.delivery_method     = :postmark
-  config.action_mailer.postmark_settings = {
-    api_token: ENV['POSTMARK_API_TOKEN'],
-    http_ssl_version: :TLSv1_2
-  }
   config.action_mailer.default_url_options = { host: "pjaszczynski-portfolio.herokuapp.com" }
 
   # Mount Action Cable outside main process or domain.
