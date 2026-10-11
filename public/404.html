@@ -1,66 +1,169 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>The page you were looking for doesn't exist (404)</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Page introuvable (404) | PJ</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --text: #252b35;
+        --muted: #78818e;
+        --accent: #b45346;
+        --background: #fafafa;
+      }
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+      * {
+        box-sizing: border-box;
+      }
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        background: var(--background);
+        color: var(--text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      }
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+      header {
+        padding: 24px clamp(24px, 5vw, 80px);
+      }
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-  </style>
-</head>
+      .logo {
+        color: #252b35;
+        font-family: "Great Vibes", cursive;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: normal;
+        text-decoration: none;
+      }
 
-<body class="rails-default-error-page">
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>Perdus ? Eh bien, revenez me voir par <a href="www.pjaszczynski.fr">ICI</a> !</h1>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
-</body>
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 24px 80px;
+        text-align: center;
+      }
+
+      .error-content {
+        max-width: 560px;
+      }
+
+      .error-code {
+        margin: 0;
+        color: var(--text);
+        font-size: clamp(110px, 22vw, 190px);
+        font-weight: 700;
+        letter-spacing: -0.09em;
+        line-height: 1;
+      }
+
+      .accent-line {
+        width: 56px;
+        height: 3px;
+        margin: 32px auto;
+        border-radius: 3px;
+        background: var(--accent);
+      }
+
+      h1 {
+        margin: 0 0 18px;
+        font-size: clamp(25px, 4vw, 34px);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+      }
+
+      .description {
+        margin: 0 auto 36px;
+        max-width: 430px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.8;
+      }
+
+      .home-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 15px 26px;
+        border: 1px solid var(--text);
+        border-radius: 7px;
+        background: var(--text);
+        color: white;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+
+      .home-button:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      .home-button:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 4px;
+      }
+
+      footer {
+        padding: 22px;
+        color: var(--muted);
+        font-size: 12px;
+        text-align: center;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .home-button {
+          transition: none;
+        }
+
+        .home-button:hover {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <a class="logo" href="/" aria-label="PJ - Accueil">PJ</a>
+    </header>
+
+    <main>
+      <section class="error-content" aria-labelledby="error-title">
+        <p class="error-code" aria-hidden="true">404</p>
+        <div class="accent-line" aria-hidden="true"></div>
+
+        <h1 id="error-title">Oups, vous êtes perdu ?</h1>
+
+        <p class="description">
+          La page que vous recherchez semble avoir disparu, ou n'a peut-être
+          jamais existé. Pas d'inquiétude, le chemin du retour est juste ici.
+        </p>
+
+        <a class="home-button" href="/">
+          <span aria-hidden="true">←</span>
+          Retour à l'accueil
+        </a>
+      </section>
+    </main>
+
+    <footer>© PJ — Portfolio</footer>
+  </body>
 </html>
