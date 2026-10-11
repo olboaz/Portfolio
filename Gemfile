@@ -72,3 +72,5 @@ gem 'matrix'
 gem 'rexml'
 gem 'minitest', '~> 5.25'
 gem "rack-attack", "~> 6.7"
+gem "bigdecimal"
+gem "mutex_m"
