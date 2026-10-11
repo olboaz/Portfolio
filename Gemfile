@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.3.12'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1.7'
+gem 'rails', '~> 7.2.3', '>= 7.2.3.2'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.5'
 # Use Puma as the app server
@@ -30,7 +30,7 @@ gem 'cloudinary', '1.29.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 # Authentification
-gem 'devise'
+gem 'devise', '>= 5.0.4', '< 6.0'
 
 # Authorization
 gem 'pundit'
@@ -58,9 +58,7 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
+  gem 'selenium-webdriver', '>= 4.14'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
