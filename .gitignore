@@ -44,3 +44,4 @@ yarn-debug.log*
 # esbuild generated JavaScript
 /app/assets/builds/*
 !/app/assets/builds/.keep
+/bin/bundle
