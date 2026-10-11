@@ -68,3 +68,112 @@ if (document.readyState === "loading") {
 } else {
   initBackToTop();
 }
+
+// Cloudflare Turnstile — gestion compatible Turbolinks
+
+let turnstileWidgetId = null;
+let turnstileContainer = null;
+let turnstileLoading = false;
+
+function setContactSubmitEnabled(enabled) {
+  const button = document.getElementById("contact-submit");
+
+  if (button) {
+    button.disabled = !enabled;
+  }
+}
+
+function initContactTurnstile() {
+  const container = document.getElementById("contact-turnstile");
+
+  if (!container) return;
+
+  setContactSubmitEnabled(false);
+
+  // Attendre que l'API Cloudflare soit disponible.
+  if (!window.turnstile) {
+    loadContactTurnstile();
+    return;
+  }
+
+  // Ne pas recréer un widget déjà initialisé.
+  if (turnstileWidgetId !== null && turnstileContainer === container) {
+    return;
+  }
+
+  // Nettoyer l'ancien widget si nécessaire.
+  cleanupContactTurnstile();
+
+  turnstileContainer = container;
+
+  turnstileWidgetId = window.turnstile.render(container, {
+    sitekey: container.dataset.sitekey,
+    theme: "auto",
+
+    callback: function (token) {
+      setContactSubmitEnabled(Boolean(token));
+    },
+
+    "expired-callback": function () {
+      setContactSubmitEnabled(false);
+    },
+
+    "error-callback": function () {
+      setContactSubmitEnabled(false);
+    },
+  });
+}
+
+function loadContactTurnstile() {
+  if (turnstileLoading) return;
+
+  const existingScript = document.getElementById("cloudflare-turnstile-script");
+
+  if (existingScript) return;
+
+  turnstileLoading = true;
+
+  const script = document.createElement("script");
+  script.id = "cloudflare-turnstile-script";
+  script.src =
+    "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+  script.async = true;
+
+  script.onload = function () {
+    turnstileLoading = false;
+    initContactTurnstile();
+  };
+
+  script.onerror = function () {
+    turnstileLoading = false;
+    script.remove();
+    console.error("Impossible de charger Cloudflare Turnstile.");
+  };
+
+  document.head.appendChild(script);
+}
+
+function cleanupContactTurnstile() {
+  if (turnstileWidgetId !== null && window.turnstile) {
+    try {
+      window.turnstile.remove(turnstileWidgetId);
+    } catch (error) {
+      console.warn("Nettoyage Turnstile :", error);
+    }
+  }
+
+  turnstileWidgetId = null;
+  turnstileContainer = null;
+  setContactSubmitEnabled(false);
+}
+
+document.addEventListener("turbolinks:before-cache", cleanupContactTurnstile);
+
+document.addEventListener("turbolinks:load", initContactTurnstile);
+
+// Initialisation au chargement initial.
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initContactTurnstile);
+} else {
+  initContactTurnstile();
+}

@@ -173,12 +173,8 @@
               </div>
               <div class="form-group">
                 <div
-                  class="cf-turnstile"
-                  data-sitekey="<%= ENV.fetch('TURNSTILE_SITE_KEY') %>"
-                  data-theme="auto"
-                  data-callback="turnstileSuccess"
-                  data-expired-callback="turnstileReset"
-                  data-error-callback="turnstileReset">
+                  id="contact-turnstile"
+                  data-sitekey="<%= ENV.fetch('TURNSTILE_SITE_KEY') %>">
                 </div>
               </div>
 
@@ -194,32 +190,7 @@
 <!-- ok -->
 
 </div>
-<script>
-  function turnstileSuccess(token) {
-    const button = document.getElementById("contact-submit");
 
-    if (button && token) {
-      button.disabled = false;
-    }
-  }
-
-  function turnstileReset() {
-    const button = document.getElementById("contact-submit");
-
-    if (button) {
-      button.disabled = true;
-    }
-  }
-
-  document.addEventListener("turbolinks:before-cache", function() {
-    turnstileReset();
-  });
-</script>
-<script
-  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-  async
-  defer>
-</script>
 <script src="https://uploads-ssl.webflow.com/58ff19c91dfbf33afe47b6d9/js/webflow.3122cdf84.js" type="text/javascript"></script>
 <script>
   // Anciennes animations : exécutées uniquement si les plugins existent.
