@@ -49,6 +49,17 @@
     <%= render 'shared/flashes' %>
 
     <%= yield %>
+    <footer class="text-center py-4 mt-5 border-top">
+      <div class="container">
+        <p class="mb-2 text-muted">
+          &copy; <%= Time.current.year %> Patrice Jaszczynski
+        </p>
+
+        <%= link_to "Politique de confidentialité",
+                    privacy_path,
+                    class: "text-muted small" %>
+      </div>
+    </footer>
     <button
       id="back-to-top"
       type="button"
