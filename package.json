@@ -1,23 +1,27 @@
 {
   "name": "Portfolio",
   "private": true,
+  "engines": {
+    "node": "22.x",
+    "yarn": "1.x"
+  },
+  "scripts": {
+    "build": "esbuild app/javascript/esbuild/application.js --bundle --platform=browser --format=iife --minify --outfile=app/assets/builds/esbuild_application.js",
+    "build:watch": "esbuild app/javascript/esbuild/application.js --bundle --platform=browser --format=iife --sourcemap --outfile=app/assets/builds/esbuild_application.js --watch"
+  },
   "dependencies": {
-    "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "5.3.0",
     "bootstrap": "^4.5.0",
+    "esbuild": "0.21.5",
     "jquery": "^3.5.1",
-    "node-sass": "^8.0.0",
     "popper.js": "^1.16.1",
     "sass": "^1.56.2",
     "select2": "^4.1.0-rc.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
-  "devDependencies": {
-    "webpack-dev-server": "^3.11.0"
-  },
+  "devDependencies": {},
   "description": "My portfolio",
   "main": "index.js",
   "repository": "git@github.com:olboaz/Portfolio.git",

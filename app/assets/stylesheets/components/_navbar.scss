@@ -1,7 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: transparent;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   animation: 1s ease-out 0s 1 navbarInFromTop;
 }
 
@@ -29,30 +29,28 @@
 @keyframes navbarInFromTop {
   0% {
     transform: translateY(-100%);
-
   }
   100% {
     transform: translateY(0);
-
   }
 }
 
 .nav-link {
-    display: inline-block;
-    color: $or;
-    text-decoration: none;
+  display: inline-block;
+  color: $or;
+  text-decoration: none;
 }
 
 .nav-link::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background: $or;
-    transition: width .3s;
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: $or;
+  transition: width 0.3s;
 }
 
 .nav-link:hover::after {
-    width: 100%;
-    //transition: width .3s;
+  width: 100%;
+  //transition: width .3s;
 }

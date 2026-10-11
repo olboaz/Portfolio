@@ -10,7 +10,7 @@
 
       <div class="intro">
         <div class="intro-image">
-          <%= image_tag "profil", alt:"Mon image", width:"533"  %>
+          <%= image_tag "profil.jpg", alt: "Mon image", width: "533" %>
         </div>
         <div class="intro-desc">
           <div class="main-text main-text--offset">
@@ -82,7 +82,7 @@
             <div class="portfolio-card">
               <%= link_to project.url, target: "_blank" do %>
                 <div class="portfolio-img">
-                  <%= cl_image_tag project.project_photo.key, width: 648, crop: :fit %>
+                  <%= cl_image_tag(project.project_photo.key, { width: 648, crop: :fit }) %>
                 </div>
                 <div class="portfolio-intro">
                   <h6><%= project.name %></h6>
@@ -139,7 +139,6 @@
             <div class="social-icons">
               <a href="https://github.com/olboaz" target="_blank"><i class="fab fa-github"></i></a>
               <a href="https://www.linkedin.com/in/patrice-jaszczynski-66a18023/" target="_blank"><i class="fab fa-linkedin"></i></a>
-              <a href="mailto:contact@pjaszczynski.fr?subject=Hello Patrice j'ai une demande !"><i class="far fa-envelope"></i></a>
               <a href="https://www.google.fr/maps/place/92300+Levallois-Perret/@48.8946561,2.2786462,15z/data=!3m1!4b1!4m5!3m4!1s0x47e66f83b73cffd3:0x40b82c3688b3db0!8m2!3d48.893217!4d2.287864" target="_blank"><i class="fas fa-map-marker-alt"></i></a>
             </div>
           </div>
@@ -172,8 +171,15 @@
                     <span class="message-error"><%= @message_error.first %></span>
                   <% end %>
               </div>
+              <div class="form-group">
+                <div
+                  id="contact-turnstile"
+                  data-sitekey="<%= ENV.fetch('TURNSTILE_SITE_KEY') %>">
+                </div>
+              </div>
+
               <div class="actions">
-                <%= f.submit "Contactez-moi"%>
+                <%= f.submit "Contactez-moi", id: "contact-submit", disabled: true %>
               </div>
             <% end %>
           </div>
@@ -185,18 +191,27 @@
 
 </div>
 
-<script src="https://d1tdp7z6w94jbb.cloudfront.net/js/jquery-3.3.1.min.js" type="text/javascript" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><script src="https://uploads-ssl.webflow.com/58ff19c91dfbf33afe47b6d9/js/webflow.3122cdf84.js" type="text/javascript"></script>
+<script src="https://uploads-ssl.webflow.com/58ff19c91dfbf33afe47b6d9/js/webflow.3122cdf84.js" type="text/javascript"></script>
 <script>
-  $('body').jpreLoader({
+  // Anciennes animations : exécutées uniquement si les plugins existent.
+  document.addEventListener("turbolinks:load", function() {
+    if (
+      window.jQuery &&
+      typeof window.jQuery.fn.jpreLoader === "function"
+    ) {
+      window.jQuery("body").jpreLoader({
+        showSplash: true
+      }, function() {
+        const face = window.jQuery("#face");
 
-    showSplash: true
+        if (typeof face.animateHome === "function") {
+          face.animateHome();
+        }
 
-  }, function() {
-
-    //Show the page once images are loaded
-
-      $('#face').animateHome();
-      $('#face').resizeFace();
+        if (typeof face.resizeFace === "function") {
+          face.resizeFace();
+        }
+      });
+    }
   });
-
 </script>

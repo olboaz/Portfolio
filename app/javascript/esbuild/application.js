@@ -1,0 +1,179 @@
+import * as ActiveStorage from "@rails/activestorage";
+import Rails from "@rails/ujs";
+import $ from "jquery";
+import Turbolinks from "turbolinks";
+
+Rails.start();
+Turbolinks.start();
+ActiveStorage.start();
+
+window.$ = $;
+window.jQuery = $;
+
+// Bootstrap 4 et Select2 utilisent jQuery.
+// On les charge après avoir exposé jQuery globalement.
+require("bootstrap");
+const select2 = require("select2/dist/js/select2.full.js");
+
+if (typeof select2 === "function") {
+  select2(window, $);
+}
+
+document.addEventListener("turbolinks:load", () => {
+  const selects = $(".js-example-basic-single");
+
+  selects.each(function () {
+    if (!$(this).hasClass("select2-hidden-accessible")) {
+      $(this).select2({
+        minimumResultsForSearch: Infinity,
+      });
+    }
+  });
+});
+
+function initBackToTop() {
+  const button = document.getElementById("back-to-top");
+  if (!button) return;
+
+  if (window.backToTopScrollHandler) {
+    window.removeEventListener("scroll", window.backToTopScrollHandler);
+  }
+
+  const updateVisibility = () => {
+    button.classList.toggle("is-visible", window.scrollY > 300);
+  };
+
+  window.backToTopScrollHandler = updateVisibility;
+
+  window.addEventListener("scroll", updateVisibility, { passive: true });
+
+  if (!button.dataset.initialized) {
+    button.dataset.initialized = "true";
+
+    button.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+  }
+
+  updateVisibility();
+}
+
+document.addEventListener("turbolinks:load", initBackToTop);
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initBackToTop);
+} else {
+  initBackToTop();
+}
+
+// Cloudflare Turnstile — gestion compatible Turbolinks
+
+let turnstileWidgetId = null;
+let turnstileContainer = null;
+let turnstileLoading = false;
+
+function setContactSubmitEnabled(enabled) {
+  const button = document.getElementById("contact-submit");
+
+  if (button) {
+    button.disabled = !enabled;
+  }
+}
+
+function initContactTurnstile() {
+  const container = document.getElementById("contact-turnstile");
+
+  if (!container) return;
+
+  setContactSubmitEnabled(false);
+
+  // Attendre que l'API Cloudflare soit disponible.
+  if (!window.turnstile) {
+    loadContactTurnstile();
+    return;
+  }
+
+  // Ne pas recréer un widget déjà initialisé.
+  if (turnstileWidgetId !== null && turnstileContainer === container) {
+    return;
+  }
+
+  // Nettoyer l'ancien widget si nécessaire.
+  cleanupContactTurnstile();
+
+  turnstileContainer = container;
+
+  turnstileWidgetId = window.turnstile.render(container, {
+    sitekey: container.dataset.sitekey,
+    theme: "auto",
+
+    callback: function (token) {
+      setContactSubmitEnabled(Boolean(token));
+    },
+
+    "expired-callback": function () {
+      setContactSubmitEnabled(false);
+    },
+
+    "error-callback": function () {
+      setContactSubmitEnabled(false);
+    },
+  });
+}
+
+function loadContactTurnstile() {
+  if (turnstileLoading) return;
+
+  const existingScript = document.getElementById("cloudflare-turnstile-script");
+
+  if (existingScript) return;
+
+  turnstileLoading = true;
+
+  const script = document.createElement("script");
+  script.id = "cloudflare-turnstile-script";
+  script.src =
+    "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+  script.async = true;
+
+  script.onload = function () {
+    turnstileLoading = false;
+    initContactTurnstile();
+  };
+
+  script.onerror = function () {
+    turnstileLoading = false;
+    script.remove();
+    console.error("Impossible de charger Cloudflare Turnstile.");
+  };
+
+  document.head.appendChild(script);
+}
+
+function cleanupContactTurnstile() {
+  if (turnstileWidgetId !== null && window.turnstile) {
+    try {
+      window.turnstile.remove(turnstileWidgetId);
+    } catch (error) {
+      console.warn("Nettoyage Turnstile :", error);
+    }
+  }
+
+  turnstileWidgetId = null;
+  turnstileContainer = null;
+  setContactSubmitEnabled(false);
+}
+
+document.addEventListener("turbolinks:before-cache", cleanupContactTurnstile);
+
+document.addEventListener("turbolinks:load", initContactTurnstile);
+
+// Initialisation au chargement initial.
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initContactTurnstile);
+} else {
+  initContactTurnstile();
+}
