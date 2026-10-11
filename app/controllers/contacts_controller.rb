@@ -3,6 +3,15 @@ class ContactsController < ApplicationController
   skip_after_action :verify_authorized, only: :create
 
 def create
+
+  unless TurnstileVerificationService.valid?(
+    params["cf-turnstile-response"],
+    request.remote_ip
+  )
+    flash[:alert] = "La vérification anti-spam a échoué. Veuillez réessayer."
+    return redirect_to root_path(anchor: "contact")
+  end
+
   @contact = Contact.new(contact_params)
 
   if @contact.save
