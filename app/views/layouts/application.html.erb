@@ -33,14 +33,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <%= javascript_include_tag 'esbuild_application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag 'PJ.svg', type: 'image/svg+xml' %>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135619089-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
 
-    gtag('config', 'UA-UA-135619089-1');
-    </script>
 
   </head>
 
@@ -49,6 +42,17 @@
     <%= render 'shared/flashes' %>
 
     <%= yield %>
+    <footer class="text-center py-4 mt-5 border-top">
+      <div class="container">
+        <p class="mb-2 text-muted">
+          &copy; <%= Time.current.year %> Patrice Jaszczynski
+        </p>
+
+        <%= link_to "Politique de confidentialité",
+                    privacy_path,
+                    class: "text-muted small" %>
+      </div>
+    </footer>
     <button
       id="back-to-top"
       type="button"

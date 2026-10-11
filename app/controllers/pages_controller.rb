@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home] # skip login for some pages
+  skip_before_action :authenticate_user!, only: [:home, :privacy] # skip login for some pages
 
   def home
     @projects = Project.all
@@ -14,4 +14,8 @@ class PagesController < ApplicationController
       @message_error = params[:contact_info][:errors][:message]
     end
   end
+
+  def privacy
+  end
+
 end
