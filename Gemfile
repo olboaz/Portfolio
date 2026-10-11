@@ -71,3 +71,4 @@ gem 'nokogiri', '~> 1.19'
 gem 'matrix'
 gem 'rexml'
 gem 'minitest', '~> 5.25'
+gem "rack-attack", "~> 6.7"
