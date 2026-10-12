@@ -34,5 +34,4 @@ Rails.application.config.content_security_policy do |policy|
   policy.form_action :self
 end
 
-Rails.application.config.content_security_policy_report_only =
-  Rails.env.production?
+Rails.application.config.content_security_policy_report_only = false
