@@ -7,11 +7,16 @@ class Rack::Attack
     req.ip if req.post? && req.path == "/contacts"
   end
   
+  # Connexion Devise : 5 tentatives maximum par IP en 15 minutes
+  throttle("logins/ip", limit: 5, period: 15.minutes) do |req|
+    req.ip if req.post? && req.path == "/users/sign_in"
+  end
+
   self.throttled_responder = lambda do |_request|
     [
       429,
       { "Content-Type" => "text/plain; charset=utf-8" },
-      ["Trop de tentatives. Veuillez réessayer dans 30 minutes."]
+      ["Trop de tentatives. Veuillez réessayer plus tard."]
     ]
   end
 end
