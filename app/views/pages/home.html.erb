@@ -144,28 +144,11 @@
         </div>
 
         <div>
-          <% if @contact.errors.any? %>
-            <script>
-              (function() {
-                function scrollToContact() {
-                  const contact = document.querySelector(".contact-form");
-
-                  if (contact) {
-                    contact.scrollIntoView({
-                      behavior: "auto",
-                      block: "center"
-                    });
-                  }
-                }
-
-                document.addEventListener("turbolinks:load", scrollToContact, { once: true });
-
-                if (document.readyState !== "loading") {
-                  requestAnimationFrame(scrollToContact);
-                }
-              })();
-            </script>
-          <% end %>
+        <div
+          id="contact"
+          class="contact-form"
+          data-has-errors="<%= @contact.errors.any? %>"
+        >
           <div class="contact-form">
             <%= simple_form_for(@contact) do |f| %>
               <div class="row">
@@ -202,28 +185,3 @@
 <!-- ok -->
 
 </div>
-
-<script src="https://uploads-ssl.webflow.com/58ff19c91dfbf33afe47b6d9/js/webflow.3122cdf84.js" type="text/javascript"></script>
-<script>
-  // Anciennes animations : exécutées uniquement si les plugins existent.
-  document.addEventListener("turbolinks:load", function() {
-    if (
-      window.jQuery &&
-      typeof window.jQuery.fn.jpreLoader === "function"
-    ) {
-      window.jQuery("body").jpreLoader({
-        showSplash: true
-      }, function() {
-        const face = window.jQuery("#face");
-
-        if (typeof face.animateHome === "function") {
-          face.animateHome();
-        }
-
-        if (typeof face.resizeFace === "function") {
-          face.resizeFace();
-        }
-      });
-    }
-  });
-</script>

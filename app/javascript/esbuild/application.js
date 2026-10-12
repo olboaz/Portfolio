@@ -177,3 +177,26 @@ if (document.readyState === "loading") {
 } else {
   initContactTurnstile();
 }
+
+// Repositionner la page sur le formulaire en cas d'erreur de validation.
+// Repositionner la page sur le formulaire après une erreur de validation.
+// Repositionner la page sur le formulaire après une erreur de validation.
+function scrollToContactErrors() {
+  const contact = document.querySelector(
+    ".contact-form[data-has-errors='true']",
+  );
+
+  if (!contact) return;
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      contact.scrollIntoView({
+        behavior: "auto",
+        block: "center",
+      });
+    });
+  });
+}
+
+document.addEventListener("turbolinks:load", scrollToContactErrors);
+window.addEventListener("load", scrollToContactErrors);

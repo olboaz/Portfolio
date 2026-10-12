@@ -1,30 +1,38 @@
-# Be sure to restart your server when you modify this file.
+# Content Security Policy (CSP).
+# Development: enforced.
+# Production: Report-Only until production validation is complete.
 
-# Define an application-wide content security policy
-# For further information see the following documentation
-# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy
+Rails.application.config.content_security_policy do |policy|
+  policy.default_src :self
 
-# Rails.application.config.content_security_policy do |policy|
-#   policy.default_src :self, :https
-#   policy.font_src    :self, :https, :data
-#   policy.img_src     :self, :https, :data
-#   policy.object_src  :none
-#   policy.script_src  :self, :https
-#   policy.style_src   :self, :https
-#   # If you are using webpack-dev-server then specify webpack-dev-server host
-#   policy.connect_src :self, :https, "http://localhost:3035", "ws://localhost:3035" if Rails.env.development?
+  policy.script_src :self,
+                    "https://challenges.cloudflare.com"
 
-#   # Specify URI for violation reports
-#   # policy.report_uri "/csp-violation-report-endpoint"
-# end
+  policy.style_src :self,
+                   "https://fonts.googleapis.com",
+                   "https://cdn.jsdelivr.net",
+                   "https://db.onlinewebfonts.com",
+                   :unsafe_inline
 
-# If you are using UJS then enable automatic nonce generation
-# Rails.application.config.content_security_policy_nonce_generator = -> request { SecureRandom.base64(16) }
+  policy.font_src :self,
+                  "https://fonts.gstatic.com",
+                  "https://db.onlinewebfonts.com",
+                  :data
 
-# Set the nonce only to specific directives
-# Rails.application.config.content_security_policy_nonce_directives = %w(script-src)
+  policy.img_src :self,
+                 "https://res.cloudinary.com",
+                 :data,
+                 :https
 
-# Report CSP violations to a specified URI
-# For further information see the following documentation:
-# https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only
-# Rails.application.config.content_security_policy_report_only = true
+  policy.connect_src :self,
+                     "https://challenges.cloudflare.com"
+
+  policy.frame_src "https://challenges.cloudflare.com"
+
+  policy.object_src :none
+  policy.base_uri :self
+  policy.form_action :self
+end
+
+Rails.application.config.content_security_policy_report_only =
+  Rails.env.production?
