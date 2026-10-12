@@ -28,8 +28,7 @@
 
 
       <!-- Modal -->
-  <%= render 'modal' %>
-<!-- ok -->
+  <%= render 'pages/modal' %>
 
 <!--     <div class="col-4">
       <h1>Data Analyste</h1>
@@ -145,31 +144,44 @@
         </div>
 
         <div>
+          <% if @contact.errors.any? %>
+            <script>
+              (function() {
+                function scrollToContact() {
+                  const contact = document.querySelector(".contact-form");
+
+                  if (contact) {
+                    contact.scrollIntoView({
+                      behavior: "auto",
+                      block: "center"
+                    });
+                  }
+                }
+
+                document.addEventListener("turbolinks:load", scrollToContact, { once: true });
+
+                if (document.readyState !== "loading") {
+                  requestAnimationFrame(scrollToContact);
+                }
+              })();
+            </script>
+          <% end %>
           <div class="contact-form">
             <%= simple_form_for(@contact) do |f| %>
               <div class="row">
                 <div class="col-6">
                   <div class="form-group">
                     <%= f.input :name, label: false, placeholder: "Nom et Prénom", class: "form-control"%>
-                    <% if @name_error %>
-                      <span class="message-error"><%= @name_error.first %></span>
-                    <% end %>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="form-group">
                     <%= f.input :email,  label: false, placeholder: "Adresse email", class: "form-control" %>
-                    <% if @email_error %>
-                      <span class="message-error"><%= @email_error.first %></span>
-                    <% end %>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <%= f.input :message,  label: false, as: :text, placeholder: "Votre message", class: "form-control" %>
-                  <% if @message_error %>
-                    <span class="message-error"><%= @message_error.first %></span>
-                  <% end %>
               </div>
               <div class="form-group">
                 <div

@@ -45,15 +45,10 @@ def create
 
     redirect_to root_path
   else
-    redirect_to root_path(
-      anchor: "contact",
-      contact_info: {
-        name: @contact.name,
-        email: @contact.email,
-        message: @contact.message,
-        errors: @contact.errors.messages
-      }
-    )
+    @projects = Project.all
+    @tools = Tool.all
+
+    render "pages/home", status: :unprocessable_entity
   end
 end
 
