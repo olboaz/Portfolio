@@ -16,9 +16,11 @@ module Portfolio
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
     config.i18n.default_locale = :fr
-    # Désactiver les fonctionnalités du navigateur inutilisées par le portfolio.
+
+    # En-têtes de sécurité du portfolio.
     config.action_dispatch.default_headers.merge!(
-      "Permissions-Policy" => "camera=(), microphone=(), geolocation=()"
+      "Permissions-Policy" => "camera=(), microphone=(), geolocation=()",
+      "X-XSS-Protection" => "0"
     )
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
