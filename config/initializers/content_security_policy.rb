@@ -11,8 +11,7 @@ Rails.application.config.content_security_policy do |policy|
   policy.style_src :self,
                    "https://fonts.googleapis.com",
                    "https://cdn.jsdelivr.net",
-                   "https://db.onlinewebfonts.com",
-                   :unsafe_inline
+                   "https://db.onlinewebfonts.com"
 
   policy.font_src :self,
                   "https://fonts.gstatic.com",
