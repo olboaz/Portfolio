@@ -58,9 +58,12 @@
       <div class="mb-3">
         <p class="text-muted mb-2">Image actuelle :</p>
 
-        <%= image_tag project.project_photo,
-            class: "img-thumbnail",
-            style: "max-width: 300px; max-height: 200px; object-fit: contain;" %>
+        <%= cl_image_tag project.project_photo.key,
+            width: 300,
+            height: 200,
+            crop: :fit,
+            class: "img-thumbnail project-main-preview",
+            alt: "Image principale du projet" %>
       </div>
     <% end %>
 
@@ -87,9 +90,12 @@
         <div class="d-flex flex-wrap">
           <% project.photos.each do |photo| %>
             <div class="mr-2 mb-2">
-              <%= image_tag photo,
-                  class: "img-thumbnail",
-                  style: "width: 120px; height: 90px; object-fit: cover;" %>
+              <%= cl_image_tag photo.key,
+                  width: 120,
+                  height: 90,
+                  crop: :fill,
+                  class: "img-thumbnail project-photo-preview",
+                  alt: "Photo du projet" %>
             </div>
           <% end %>
         </div>

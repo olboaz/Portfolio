@@ -251,3 +251,15 @@
     }
   }
 }
+
+.project-photo-preview {
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+}
+
+.project-main-preview {
+  max-width: 300px;
+  max-height: 200px;
+  object-fit: contain;
+}

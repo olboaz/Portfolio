@@ -28,8 +28,12 @@
           <tr>
             <td>
               <% if project.project_photo.attached? %>
-                <%= image_tag project.project_photo,
-                    class: "admin-project-image" %>
+                <%= cl_image_tag project.project_photo.key,
+                    width: 100,
+                    height: 100,
+                    crop: :fit,
+                    class: "admin-project-image",
+                    alt: project.name %>
               <% else %>
                 <span class="text-muted">Aucune image</span>
               <% end %>
