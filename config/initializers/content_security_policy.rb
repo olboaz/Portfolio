@@ -18,10 +18,7 @@ Rails.application.config.content_security_policy do |policy|
                   "https://db.onlinewebfonts.com",
                   :data
 
-  policy.img_src :self,
-                 "https://res.cloudinary.com",
-                 :data,
-                 :https
+  policy.img_src :self, "https://res.cloudinary.com", :data
 
   policy.connect_src :self,
                      "https://challenges.cloudflare.com"
