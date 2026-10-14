@@ -23,6 +23,7 @@ Rails.application.config.content_security_policy do |policy|
   policy.object_src :none
   policy.base_uri :self
   policy.form_action :self
+  policy.frame_ancestors :none
 end
 
 Rails.application.config.content_security_policy_report_only = false
