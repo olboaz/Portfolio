@@ -7,12 +7,11 @@ Rails.application.config.content_security_policy do |policy|
   policy.script_src :self,
                     "https://challenges.cloudflare.com"
 
-  policy.style_src :self,
-                   "https://fonts.googleapis.com",
-                   "https://db.onlinewebfonts.com"
+  policy.style_src :self, "https://fonts.googleapis.com"
 
-  policy.font_src :self, "https://fonts.gstatic.com",
-                "https://db.onlinewebfonts.com"
+  policy.font_src :self,
+                  "https://fonts.gstatic.com",
+                  "https://db.onlinewebfonts.com"
 
   policy.img_src :self, "https://res.cloudinary.com", :data
 
