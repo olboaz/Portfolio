@@ -1,6 +1,5 @@
 # Content Security Policy (CSP).
-# Development: enforced.
-# Production: Report-Only until production validation is complete.
+# Enforced in development and production.
 
 Rails.application.config.content_security_policy do |policy|
   policy.default_src :self
@@ -10,7 +9,6 @@ Rails.application.config.content_security_policy do |policy|
 
   policy.style_src :self,
                    "https://fonts.googleapis.com",
-                   "https://cdn.jsdelivr.net",
                    "https://db.onlinewebfonts.com"
 
   policy.font_src :self, "https://fonts.gstatic.com",

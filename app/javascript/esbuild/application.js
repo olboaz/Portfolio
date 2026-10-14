@@ -10,26 +10,9 @@ ActiveStorage.start();
 window.$ = $;
 window.jQuery = $;
 
-// Bootstrap 4 et Select2 utilisent jQuery.
-// On les charge après avoir exposé jQuery globalement.
+// Bootstrap 4 utilise jQuery.
+// On le charge après avoir exposé jQuery globalement.
 require("bootstrap");
-const select2 = require("select2/dist/js/select2.full.js");
-
-if (typeof select2 === "function") {
-  select2(window, $);
-}
-
-document.addEventListener("turbolinks:load", () => {
-  const selects = $(".js-example-basic-single");
-
-  selects.each(function () {
-    if (!$(this).hasClass("select2-hidden-accessible")) {
-      $(this).select2({
-        minimumResultsForSearch: Infinity,
-      });
-    }
-  });
-});
 
 function initBackToTop() {
   const button = document.getElementById("back-to-top");
