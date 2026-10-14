@@ -13,10 +13,8 @@ Rails.application.config.content_security_policy do |policy|
                    "https://cdn.jsdelivr.net",
                    "https://db.onlinewebfonts.com"
 
-  policy.font_src :self,
-                  "https://fonts.gstatic.com",
-                  "https://db.onlinewebfonts.com",
-                  :data
+  policy.font_src :self, "https://fonts.gstatic.com",
+                "https://db.onlinewebfonts.com"
 
   policy.img_src :self, "https://res.cloudinary.com", :data
 
