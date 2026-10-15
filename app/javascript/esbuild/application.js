@@ -2,6 +2,8 @@ import * as ActiveStorage from "@rails/activestorage";
 import Rails from "@rails/ujs";
 import $ from "jquery";
 import Turbolinks from "turbolinks";
+import "./image_previews";
+import "./project_gallery";
 
 Rails.start();
 Turbolinks.start();

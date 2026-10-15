@@ -33,8 +33,13 @@
 
   <div class="form-group mb-4">
     <%= f.label :tool_photo, "Logo" %>
-    <%= f.file_field :tool_photo, class: "form-control-file" %>
+    <%= f.file_field :tool_photo,
+        class: "form-control-file",
+        accept: "image/jpeg,image/png,image/webp" %>
+
     <small class="form-text text-muted">
+      Formats acceptés : JPEG, PNG, WebP. Taille maximale : 5 Mo.
+      <br>
       Laisser vide pour conserver le logo actuel.
     </small>
   </div>

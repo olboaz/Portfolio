@@ -1,81 +1,157 @@
+<div class="container project-detail">
 
-<div class="container py-5 admin-content">
+  <%# ===== NAVIGATION ===== %>
+  <div class="project-detail__topbar">
+
+    <%= link_to "← Retour au portfolio",
+        root_path(anchor: "portfolio"),
+        class: "project-detail__back" %>
+
+    <% if policy(@project).update? %>
+      <%= link_to "Modifier le projet",
+          edit_project_path(@project),
+          class: "btn btn-outline-secondary btn-sm" %>
+    <% end %>
+
+  </div>
 
   <%# ===== EN-TÊTE ===== %>
-  <div class="d-flex justify-content-between align-items-start mb-4">
-    <div>
-      <h1 class="mb-2"><%= @project.name %></h1>
+  <header class="project-detail__header">
+
+    <h1 class="project-detail__title">
+      <%= @project.name %>
+    </h1>
+
+    <div class="project-detail__meta">
 
       <% if @project.project_type.present? %>
-        <span class="badge badge-secondary">
+        <span class="project-detail__category">
           <%= @project.project_type %>
         </span>
       <% end %>
+
+      <% if @project.url.present? %>
+        <%= link_to "Visiter le site ↗",
+            @project.url,
+            target: "_blank",
+            rel: "noopener noreferrer",
+            class: "btn btn-primary" %>
+      <% end %>
+
     </div>
 
-    <div class="admin-actions">
-      <%= link_to "Modifier",
-          edit_project_path(@project),
-          class: "btn btn-primary" %>
-
-      <%= link_to "Retour",
-          projects_path,
-          class: "btn btn-outline-secondary" %>
-    </div>
-  </div>
+  </header>
 
   <%# ===== IMAGE PRINCIPALE ===== %>
   <% if @project.project_photo.attached? %>
-    <div class="mb-4 text-center">
+    <% gallery_count = (@project.project_photo.attached? ? 1 : 0) + @project.photos.size %>
+    <div class="project-detail__hero">
       <%= cl_image_tag @project.project_photo.key,
-          width: 900,
+          width: 1200,
           crop: :limit,
-          class: "img-fluid rounded",
-          alt: @project.name %>
+          class: "img-fluid",
+          alt: @project.name,
+          tabindex: 0 %>
+      <% if gallery_count > 1 %>
+        <div class="project-detail__navigation mt-3 d-flex justify-content-center align-items-center">
+          <button type="button"
+                  class="btn btn-outline-secondary project-detail__prev"
+                  aria-label="Image précédente">
+            ←
+          </button>
+
+          <span class="project-detail__counter mx-3" aria-live="polite">
+            1 / <%= gallery_count %>
+          </span>
+
+          <button type="button"
+                  class="btn btn-outline-secondary project-detail__next"
+                  aria-label="Image suivante">
+            →
+          </button>
+        </div>
+      <% end %>
     </div>
   <% end %>
 
   <%# ===== DESCRIPTION ===== %>
   <% if @project.description.present? %>
-    <div class="mb-4">
-      <h3>Description</h3>
-      <div class="text-muted">
-        <%= simple_format(@project.description) %>
-      </div>
-    </div>
+    <section class="project-detail__description">
+      <h2 class="h4 mb-3">À propos du projet</h2>
+
+      <%= simple_format(@project.description) %>
+    </section>
   <% end %>
 
-  <%# ===== URL DU PROJET ===== %>
-  <% if @project.url.present? %>
-    <div class="mb-4">
-      <h3>Lien du projet</h3>
+  <%# ===== GALERIE DU PROJET ===== %>
+  <% gallery_photos = [] %>
 
-      <%= link_to @project.url,
-          @project.url,
-          target: "_blank",
-          rel: "noopener noreferrer",
-          class: "btn btn-outline-primary" %>
-    </div>
-  <% end %>
+  <% gallery_photos << @project.project_photo if @project.project_photo.attached? %>
+  <% gallery_photos.concat(@project.photos.to_a) if @project.photos.attached? %>
 
-  <%# ===== IMAGES SUPPLÉMENTAIRES ===== %>
-  <% if @project.photos.attached? %>
-    <div class="mt-5">
-      <h3 class="mb-3">Galerie du projet</h3>
+  <% if gallery_photos.size > 1 %>
+    <div class="project-detail__gallery">
 
-      <div class="row">
-        <% @project.photos.each do |photo| %>
-          <div class="col-md-4 mb-3">
+      <h2 class="h4 mb-3">Galerie du projet</h2>
+
+      <div class="project-detail__thumbnails">
+        <% gallery_photos.each_with_index do |photo, index| %>
+          <button
+            type="button"
+            class="project-detail__thumbnail <%= 'is-active' if index.zero? %>"
+            data-image-url="<%= cl_image_path(photo.key, width: 1200, crop: :limit) %>"
+            aria-label="Afficher l'image <%= index + 1 %>"
+            aria-pressed="<%= index.zero? %>">
+
             <%= cl_image_tag photo.key,
-                width: 400,
-                height: 260,
+                width: 160,
+                height: 110,
                 crop: :fit,
-                class: "img-fluid rounded",
-                alt: @project.name %>
-          </div>
+                alt: "#{@project.name} - Image #{index + 1}" %>
+
+          </button>
         <% end %>
       </div>
+
     </div>
   <% end %>
+
+  <%# ===== VISIONNEUSE PLEIN ÉCRAN ===== %>
+  <% if @project.project_photo.attached? || @project.photos.attached? %>
+    <div class="project-lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Visionneuse des images du projet"
+        aria-hidden="true"
+        hidden>
+
+      <button type="button"
+              class="project-lightbox__close"
+              aria-label="Fermer la visionneuse">
+        &times;
+      </button>
+
+      <img class="project-lightbox__image"
+          alt="<%= @project.name %>">
+
+      <div class="project-lightbox__navigation">
+        <button type="button"
+                class="project-lightbox__prev"
+                aria-label="Image précédente">
+          &#8592;
+        </button>
+
+        <span class="project-lightbox__counter" aria-live="polite"></span>
+
+        <button type="button"
+                class="project-lightbox__next"
+                aria-label="Image suivante">
+          &#8594;
+        </button>
+      </div>
+
+    </div>
+  <% end %>
+
 
 </div>

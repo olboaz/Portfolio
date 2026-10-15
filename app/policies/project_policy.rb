@@ -4,7 +4,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def show?
-    admin?
+    true
   end
 
   def create?

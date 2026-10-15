@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:show]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -22,7 +23,7 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to project_path(@project)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -36,7 +37,7 @@ class ProjectsController < ApplicationController
     if @project.update(project_params)
       redirect_to project_path(@project)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

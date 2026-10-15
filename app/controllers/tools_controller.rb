@@ -22,7 +22,7 @@ class ToolsController < ApplicationController
     if @tool.save
       redirect_to tool_path(@tool)
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -36,7 +36,7 @@ class ToolsController < ApplicationController
     if @tool.update(tool_params)
       redirect_to tool_path(@tool)
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

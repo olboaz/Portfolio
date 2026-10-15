@@ -13,7 +13,7 @@ Rails.application.config.content_security_policy do |policy|
                   "https://fonts.gstatic.com",
                   "https://db.onlinewebfonts.com"
 
-  policy.img_src :self, "https://res.cloudinary.com", :data
+  policy.img_src :self, "https://res.cloudinary.com", :data, :blob
 
   policy.connect_src :self,
                      "https://challenges.cloudflare.com"

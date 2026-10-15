@@ -69,10 +69,12 @@
 
     <%= f.file_field :project_photo,
         class: "form-control-file",
-        accept: "image/*" %>
-
+        accept: "image/jpeg,image/png,image/webp" %>
+    <div id="project-main-preview" class="mt-3"></div>
     <small class="form-text text-muted">
       Laisser vide pour conserver l'image actuelle.
+      <br>
+      Formats acceptés : JPEG, PNG, WebP. Taille maximale : 5 Mo par image.
     </small>
   </div>
 
@@ -105,11 +107,13 @@
     <%= f.file_field :photos,
         multiple: true,
         class: "form-control-file",
-        accept: "image/*" %>
-
+        accept: "image/jpeg,image/png,image/webp" %>
+    <div id="project-photos-preview" class="mt-3 d-flex flex-wrap"></div>
     <small class="form-text text-muted">
       Sélectionner plusieurs fichiers pour ajouter des images.
       Les images existantes ne doivent pas être supprimées.
+      <br>
+      Formats acceptés : JPEG, PNG, WebP. Taille maximale : 5 Mo par image.
     </small>
   </div>
 
