@@ -91,23 +91,63 @@
 
         <div class="d-flex flex-wrap">
           <% project.photos.each do |photo| %>
-            <div class="mr-2 mb-2">
+            <label class="project-photo-item">
               <%= cl_image_tag photo.key,
                   width: 120,
                   height: 90,
                   crop: :fill,
                   class: "img-thumbnail project-photo-preview",
                   alt: "Photo du projet" %>
-            </div>
+
+              <%= check_box_tag "project[remove_photo_ids][]",
+                  photo.id,
+                  false,
+                  class: "project-photo-checkbox",
+                  aria: { label: "Supprimer cette image" } %>
+            </label>
           <% end %>
         </div>
       </div>
     <% end %>
 
-    <%= f.file_field :photos,
-        multiple: true,
-        class: "form-control-file",
-        accept: "image/jpeg,image/png,image/webp" %>
+    <% photos_count = project.photos.attachments.size %>
+    <% max_photos = Project::MAX_ADDITIONAL_PHOTOS %>
+    <% remaining_photos = [max_photos - photos_count, 0].max %>
+
+    <div id="project-photos-quota"
+        data-max-photos="<%= max_photos %>"
+        data-existing-photos="<%= photos_count %>">
+
+      <div class="mb-2">
+        <strong>
+          Images supplémentaires :
+          <span id="project-photos-count"><%= photos_count %></span>
+          / <%= max_photos %>
+        </strong>
+      </div>
+
+      <div id="project-photos-upload"
+          <%= 'hidden' if remaining_photos.zero? %>>
+
+        <%= f.file_field :photos,
+            multiple: true,
+            class: "form-control-file",
+            accept: "image/jpeg,image/png,image/webp" %>
+
+        <small id="project-photos-remaining" class="form-text text-muted">
+          Vous pouvez encore ajouter <%= pluralize(remaining_photos, "image") %>.
+        </small>
+      </div>
+
+      <div id="project-photos-limit-message"
+          class="alert alert-warning mt-2"
+          <%= 'hidden' if remaining_photos.positive? %>>
+        Impossible d'ajouter des images supplémentaires :
+        vous avez atteint le quota de <%= max_photos %> images.
+        Sélectionnez une image à supprimer pour libérer une place.
+      </div>
+    </div>
+
     <div id="project-photos-preview" class="mt-3 d-flex flex-wrap"></div>
     <small class="form-text text-muted">
       Sélectionner plusieurs fichiers pour ajouter des images.

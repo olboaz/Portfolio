@@ -34,8 +34,46 @@ class ProjectsController < ApplicationController
   def update
     authorize @project
 
-    if @project.update(project_params)
-      redirect_to project_path(@project)
+    attributes = project_params
+    new_photos = Array(attributes.delete(:photos)).reject(&:blank?)
+    remove_photo_ids = Array(attributes.delete(:remove_photo_ids)).reject(&:blank?)
+
+    existing_attachments = @project.photos.attachments.to_a
+
+    # Vérifier que toutes les images à supprimer appartiennent au projet.
+    valid_ids = existing_attachments.map { |photo| photo.id.to_s }
+
+    if (remove_photo_ids - valid_ids).any?
+      redirect_to edit_project_path(@project),
+                  alert: "Une image sélectionnée est invalide."
+      return
+    end
+
+    # Conserver les images non sélectionnées pour suppression.
+    kept_attachments = existing_attachments.reject do |photo|
+      remove_photo_ids.include?(photo.id.to_s)
+    end
+
+    # Vérifier le quota avant toute modification.
+    if kept_attachments.size + new_photos.size > Project::MAX_ADDITIONAL_PHOTOS
+      redirect_to edit_project_path(@project),
+                  alert: "Impossible d'ajouter des images supplémentaires : " \
+                        "la galerie est limitée à 4 images par projet."
+      return
+    end
+
+    # Valider les autres champs avant de modifier les pièces jointes.
+    @project.assign_attributes(attributes)
+
+    if @project.valid?
+      @project.photos = kept_attachments.map(&:blob) + new_photos
+
+      if @project.save
+        redirect_to project_path(@project),
+                    notice: "Le projet a été mis à jour."
+      else
+        render :edit, status: :unprocessable_entity
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -65,7 +103,8 @@ class ProjectsController < ApplicationController
       :description,
       :url,
       :project_photo,
-      photos: []
+      photos: [],
+      remove_photo_ids: []
     )
   end
 end

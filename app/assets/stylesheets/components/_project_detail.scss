@@ -297,3 +297,41 @@
 .project-lightbox__close:hover {
   opacity: 0.7;
 }
+
+/* Miniatures des images supplémentaires dans l'administration */
+
+.project-photo-item {
+  position: relative;
+  display: inline-block;
+  margin: 0 12px 12px 0;
+  cursor: pointer;
+}
+
+.project-photo-item .project-photo-preview {
+  display: block;
+  width: 120px;
+  height: 90px;
+  object-fit: cover;
+  transition:
+    opacity 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.project-photo-checkbox {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 19px;
+  height: 19px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #dc3545;
+  z-index: 1;
+}
+
+/* Image sélectionnée pour suppression */
+.project-photo-item:has(.project-photo-checkbox:checked)
+  .project-photo-preview {
+  opacity: 0.45;
+  border: 2px solid #dc3545;
+}
