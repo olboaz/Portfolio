@@ -4,7 +4,7 @@ class Contact < ApplicationRecord
   validates :email,
     presence: { message: 'ne peut pas être vide' },
     format: {
-      with: /\S+@\S+\.\S+/i,
+      with: /\A[^\s@]+@[^\s@]+\.[^\s@]+\z/,
       message: "format de l'email non valide"
     }
 

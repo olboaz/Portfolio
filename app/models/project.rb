@@ -2,6 +2,12 @@ class Project < ApplicationRecord
   MAX_ADDITIONAL_PHOTOS = 4
 
   validates :name, presence: true
+  validates :url,
+  format: {
+    with: /\Ahttps?:\/\/[^\s\/?#]+(?:[\/?#][^\s]*)?\z/i,
+    message: "doit commencer par http:// ou https:// et contenir une adresse valide"
+  },
+  allow_blank: true
 
   has_many_attached :photos
   has_one_attached :project_photo

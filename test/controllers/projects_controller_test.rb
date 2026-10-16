@@ -225,4 +225,30 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     assert_equal original_blob_ids,
                 @project.photos.attachments.map(&:blob_id)
   end
+
+  test "affiche le lien pour une URL HTTPS valide" do
+    @project.update!(url: "https://example.com")
+
+    get project_path(@project)
+
+    assert_response :success
+
+    assert_select 'a[href="https://example.com"]',
+                  text: /Visiter le site/,
+                  count: 1
+  end
+
+  test "ne genere pas de lien pour une URL dangereuse" do
+    # Simule une ancienne URL dangereuse déjà enregistrée en base.
+    # update_columns contourne volontairement les validations Rails.
+    @project.update_columns(url: "javascript:alert(1)")
+
+    get project_path(@project)
+
+    assert_response :success
+
+    assert_select 'a[href^="javascript:"]', count: 0
+    assert_select 'a', text: /Visiter le site/, count: 0
+  end
+
 end

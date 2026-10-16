@@ -30,7 +30,7 @@
         </span>
       <% end %>
 
-      <% if @project.url.present? %>
+      <% if @project.url.present? && @project.url.match?(/\Ahttps?:\/\/[^\s\/?#]+(?:[\/?#][^\s]*)?\z/i) %>
         <%= link_to "Visiter le site ↗",
             @project.url,
             target: "_blank",
