@@ -226,7 +226,7 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
                 @project.photos.attachments.map(&:blob_id)
   end
 
-  test "affiche le lien pour une URL HTTPS valide" do
+  test "affiche un lien HTTPS valide avec les protections de securite" do
     @project.update!(url: "https://example.com")
 
     get project_path(@project)
@@ -235,6 +235,12 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
 
     assert_select 'a[href="https://example.com"]',
                   text: /Visiter le site/,
+                  count: 1
+
+    assert_select 'a[href="https://example.com"][target="_blank"]',
+                  count: 1
+
+    assert_select 'a[href="https://example.com"][rel~="noopener"][rel~="noreferrer"]',
                   count: 1
   end
 
