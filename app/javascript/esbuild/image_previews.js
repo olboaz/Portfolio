@@ -1,3 +1,6 @@
+const initializedPreviewInputs = new WeakSet();
+const initializedQuotaElements = new WeakSet();
+
 function initImagePreviews() {
   const fields = [
     {
@@ -16,9 +19,9 @@ function initImagePreviews() {
     const input = document.getElementById(inputId);
     const container = document.getElementById(previewId);
 
-    if (!input || !container || input.dataset.previewInitialized) return;
+    if (!input || !container || initializedPreviewInputs.has(input)) return;
 
-    input.dataset.previewInitialized = "true";
+    initializedPreviewInputs.add(input);
 
     input.addEventListener("change", () => {
       container.replaceChildren();
@@ -53,9 +56,7 @@ function initImagePreviews() {
 
 function initProjectPhotosQuota() {
   const quota = document.getElementById("project-photos-quota");
-  if (!quota || quota.dataset.quotaInitialized) return;
-
-  quota.dataset.quotaInitialized = "true";
+  if (!quota || initializedQuotaElements.has(quota)) return;
 
   const input = document.getElementById("project_photos");
   const upload = document.getElementById("project-photos-upload");
@@ -65,6 +66,8 @@ function initProjectPhotosQuota() {
   const preview = document.getElementById("project-photos-preview");
 
   if (!input || !upload || !counter || !remaining || !warning) return;
+
+  initializedQuotaElements.add(quota);
 
   const max = Number(quota.dataset.maxPhotos);
   const existing = Number(quota.dataset.existingPhotos);
@@ -108,7 +111,7 @@ function initProjectPhotosQuota() {
   updateQuota();
 }
 
-document.addEventListener("turbolinks:load", initImagePreviews);
+document.addEventListener("turbo:load", initImagePreviews);
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initImagePreviews);
@@ -116,10 +119,19 @@ if (document.readyState === "loading") {
   initImagePreviews();
 }
 
-document.addEventListener("turbolinks:load", initProjectPhotosQuota);
+document.addEventListener("turbo:load", initProjectPhotosQuota);
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initProjectPhotosQuota);
 } else {
   initProjectPhotosQuota();
 }
+
+// Nettoyer les aperçus avant la mise en cache de la page.
+function cleanupImagePreviews() {
+  ["project-main-preview", "project-photos-preview"].forEach((id) => {
+    document.getElementById(id)?.replaceChildren();
+  });
+}
+
+document.addEventListener("turbo:before-cache", cleanupImagePreviews);

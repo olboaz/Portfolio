@@ -1,12 +1,11 @@
+import "@hotwired/turbo-rails";
 import * as ActiveStorage from "@rails/activestorage";
 import Rails from "@rails/ujs";
 import $ from "jquery";
-import Turbolinks from "turbolinks";
 import "./image_previews";
 import "./project_gallery";
 
 Rails.start();
-Turbolinks.start();
 ActiveStorage.start();
 
 window.$ = $;
@@ -15,6 +14,8 @@ window.jQuery = $;
 // Bootstrap 4 utilise jQuery.
 // On le charge après avoir exposé jQuery globalement.
 require("bootstrap");
+
+const initializedBackToTopButtons = new WeakSet();
 
 function initBackToTop() {
   const button = document.getElementById("back-to-top");
@@ -32,8 +33,8 @@ function initBackToTop() {
 
   window.addEventListener("scroll", updateVisibility, { passive: true });
 
-  if (!button.dataset.initialized) {
-    button.dataset.initialized = "true";
+  if (!initializedBackToTopButtons.has(button)) {
+    initializedBackToTopButtons.add(button);
 
     button.addEventListener("click", () => {
       window.scrollTo({
@@ -46,7 +47,7 @@ function initBackToTop() {
   updateVisibility();
 }
 
-document.addEventListener("turbolinks:load", initBackToTop);
+document.addEventListener("turbo:load", initBackToTop);
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initBackToTop);
@@ -54,7 +55,7 @@ if (document.readyState === "loading") {
   initBackToTop();
 }
 
-// Cloudflare Turnstile — gestion compatible Turbolinks
+// Cloudflare Turnstile — gestion compatible Turbo 8
 
 let turnstileWidgetId = null;
 let turnstileContainer = null;
@@ -152,9 +153,11 @@ function cleanupContactTurnstile() {
   setContactSubmitEnabled(false);
 }
 
-document.addEventListener("turbolinks:before-cache", cleanupContactTurnstile);
+document.addEventListener("turbo:before-cache", cleanupContactTurnstile);
+document.addEventListener("turbo:before-render", cleanupContactTurnstile);
 
-document.addEventListener("turbolinks:load", initContactTurnstile);
+document.addEventListener("turbo:load", initContactTurnstile);
+document.addEventListener("turbo:render", initContactTurnstile);
 
 // Initialisation au chargement initial.
 if (document.readyState === "loading") {
@@ -163,8 +166,6 @@ if (document.readyState === "loading") {
   initContactTurnstile();
 }
 
-// Repositionner la page sur le formulaire en cas d'erreur de validation.
-// Repositionner la page sur le formulaire après une erreur de validation.
 // Repositionner la page sur le formulaire après une erreur de validation.
 function scrollToContactErrors() {
   const contact = document.querySelector(
@@ -183,5 +184,6 @@ function scrollToContactErrors() {
   });
 }
 
-document.addEventListener("turbolinks:load", scrollToContactErrors);
+document.addEventListener("turbo:load", scrollToContactErrors);
+document.addEventListener("turbo:render", scrollToContactErrors);
 window.addEventListener("load", scrollToContactErrors);

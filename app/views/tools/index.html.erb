@@ -55,11 +55,13 @@
                     tool_path(tool),
                     class: "btn btn-sm btn-outline-secondary" %>
 
-                <%= link_to "Supprimer",
+                <%= button_to "Supprimer",
                   tool_path(tool),
                   method: :delete,
-                  data: {
-                    confirm: "Supprimer définitivement l'outil « #{tool.name} » ?"
+                  form: {
+                    data: {
+                      turbo_confirm: "Supprimer définitivement l'outil « #{tool.name} » ?"
+                    }
                   },
                   class: "btn btn-sm btn-outline-danger" %>
               </div>

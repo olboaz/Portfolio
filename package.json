@@ -10,14 +10,14 @@
     "build:watch": "esbuild app/javascript/esbuild/application.js --bundle --platform=browser --format=iife --sourcemap --outfile=app/assets/builds/esbuild_application.js --watch"
   },
   "dependencies": {
+    "@hotwired/turbo-rails": "^8.0.23",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "bootstrap": "^4.5.0",
     "esbuild": "0.25.0",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
-    "sass": "^1.105.1",
-    "turbolinks": "^5.2.0"
+    "sass": "^1.105.1"
   },
   "resolutions": {
     "source-map-js": "^1.2.2"

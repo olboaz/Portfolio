@@ -16,10 +16,14 @@
   </div>
 
   <div class="d-flex justify-content-end mb-4">
-    <%= link_to "Se déconnecter",
+    <%= button_to "Se déconnecter",
         destroy_user_session_path,
         method: :delete,
-        data: { confirm: "Voulez-vous vous déconnecter ?" },
+        form: {
+          data: {
+            turbo_confirm: "Voulez-vous vous déconnecter ?"
+          }
+        },
         class: "btn btn-outline-danger" %>
   </div>
   <%# ===== INDICATEURS ===== %>

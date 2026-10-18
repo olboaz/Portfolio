@@ -1,10 +1,13 @@
+const initializedProjectGalleries = new WeakSet();
+
 function initProjectGallery() {
   const gallery = document.querySelector(".project-detail__gallery");
   const heroImage = document.querySelector(".project-detail__hero img");
 
-  if (!gallery || !heroImage || gallery.dataset.initialized) return;
+  if (!gallery || !heroImage || initializedProjectGalleries.has(gallery))
+    return;
 
-  gallery.dataset.initialized = "true";
+  initializedProjectGalleries.add(gallery);
 
   const thumbnails = Array.from(
     gallery.querySelectorAll(".project-detail__thumbnail"),
@@ -133,7 +136,7 @@ function initProjectGallery() {
     });
   }
 
-  // Éviter les événements en doublon avec Turbolinks
+  // Éviter les événements clavier en doublon après une navigation Turbo
   if (window.projectGalleryKeyHandler) {
     document.removeEventListener("keydown", window.projectGalleryKeyHandler);
   }
@@ -162,7 +165,7 @@ function initProjectGallery() {
   document.addEventListener("keydown", window.projectGalleryKeyHandler);
 }
 
-document.addEventListener("turbolinks:load", initProjectGallery);
+document.addEventListener("turbo:load", initProjectGallery);
 
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initProjectGallery);
@@ -170,8 +173,8 @@ if (document.readyState === "loading") {
   initProjectGallery();
 }
 
-// Nettoyage avant un changement de page avec Turbolinks
-document.addEventListener("turbolinks:before-cache", () => {
+// Nettoyage avant la mise en cache de la page par Turbo
+function cleanupProjectGallery() {
   document.body.style.overflow = "";
 
   const lightbox = document.querySelector(".project-lightbox");
@@ -186,10 +189,6 @@ document.addEventListener("turbolinks:before-cache", () => {
 
     window.projectGalleryKeyHandler = null;
   }
+}
 
-  const gallery = document.querySelector(".project-detail__gallery");
-
-  if (gallery) {
-    delete gallery.dataset.initialized;
-  }
-});
+document.addEventListener("turbo:before-cache", cleanupProjectGallery);
