@@ -15,6 +15,7 @@ module Portfolio
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
+    config.active_storage.variant_processor = :disabled
     config.i18n.default_locale = :fr
     # Limiter l'envoi des cookies lors des requêtes provenant d'autres sites.
     config.action_dispatch.cookies_same_site_protection = :lax
