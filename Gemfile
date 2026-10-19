@@ -17,7 +17,7 @@ gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'letter_opener', group: :development
-gem 'cloudinary', '1.29.0'
+gem 'cloudinary', '2.4.5'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
