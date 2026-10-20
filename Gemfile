@@ -29,7 +29,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise', '>= 5.0.4', '< 6.0'
 
 # Authorization
-gem 'pundit'
+gem 'pundit', '2.5.2'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'

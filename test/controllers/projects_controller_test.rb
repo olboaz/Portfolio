@@ -257,4 +257,20 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'a', text: /Visiter le site/, count: 0
   end
 
+  test "non admin cannot edit a project" do
+    user = User.create!(
+      email: "user-pundit-test@example.com",
+      password: "Password123!",
+      admin: false
+    )
+
+    sign_out @admin
+    sign_in user
+
+    get edit_project_path(@project)
+
+    assert_redirected_to root_path
+    assert_equal "Vous n'êtes pas autorisé à effectuer cette action.",
+                flash[:notice]
+  end
 end
