@@ -289,9 +289,9 @@ GEM
       logger (~> 1.4)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
-    simple_form (5.0.2)
-      actionpack (>= 5.0)
-      activemodel (>= 5.0)
+    simple_form (5.4.1)
+      actionpack (>= 7.0)
+      activemodel (>= 7.0)
     sprockets (4.4.1)
       concurrent-ruby (~> 1.1)
       logger
@@ -354,7 +354,7 @@ DEPENDENCIES
   rexml
   sass-rails (>= 6)
   selenium-webdriver (>= 4.14)
-  simple_form
+  simple_form (= 5.4.1)
   tzinfo-data
   web-console (>= 3.3.0)
 

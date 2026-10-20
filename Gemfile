@@ -33,7 +33,7 @@ gem 'pundit', '2.5.2'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
-gem 'simple_form'
+gem 'simple_form', '5.4.1'
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails', '~> 2.8'
