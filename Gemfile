@@ -8,7 +8,7 @@ gem 'rails', '~> 8.1.4'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.5'
 # Use Puma as the app server
-gem 'puma', '~> 7.0', '>= 7.0.3'
+gem 'puma', '~> 8.0', '>= 8.0.2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Use Redis adapter to run Action Cable in production
