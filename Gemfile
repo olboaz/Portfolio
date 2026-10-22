@@ -16,7 +16,7 @@ gem 'redis', '4.8.1'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'letter_opener', group: :development
+gem 'letter_opener', '1.10.0', group: :development
 gem 'cloudinary', '2.4.5'
 
 # Use Active Storage variant
