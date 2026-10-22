@@ -36,7 +36,7 @@ gem 'font-awesome-sass', '6.7.2'
 gem 'simple_form', '5.4.1'
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'dotenv-rails', '~> 2.8'
+  gem 'dotenv-rails', '~> 3.2'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
