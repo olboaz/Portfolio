@@ -268,7 +268,6 @@ GEM
       prism (>= 1.6.0)
       rbs (>= 4.0.0)
       tsort
-    redis (4.8.1)
     regexp_parser (2.13.1)
     reline (0.7.0)
       io-console (~> 0.5)
@@ -353,7 +352,6 @@ DEPENDENCIES
   pundit (= 2.5.2)
   rack-attack (~> 6.7)
   rails (~> 8.1.4)
-  redis (= 4.8.1)
   rexml
   sass-rails (>= 6)
   selenium-webdriver (>= 4.14)
