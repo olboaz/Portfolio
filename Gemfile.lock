@@ -274,7 +274,6 @@ GEM
     responders (3.2.1)
       actionpack (>= 7.0)
       railties (>= 7.0)
-    rexml (3.4.4)
     rubyzip (3.7.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -351,7 +350,6 @@ DEPENDENCIES
   pundit (= 2.5.2)
   rack-attack (~> 6.7)
   rails (~> 8.1.4)
-  rexml
   sass-rails (>= 6)
   selenium-webdriver (>= 4.14)
   simple_form (= 5.4.1)
