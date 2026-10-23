@@ -58,6 +58,17 @@ class ToolsController < ApplicationController
   end
 
   def tool_params
-    params.require(:tool).permit(:name, :tool_type, :tool_photo)
+    permitted = params.require(:tool).permit(:name, :tool_type, :tool_photo)
+
+    if permitted.key?(:tool_type)
+      permitted[:tool_type] = permitted[:tool_type]
+        .to_s
+        .split(",")
+        .map(&:strip)
+        .reject(&:blank?)
+        .uniq
+    end
+
+    permitted
   end
 end

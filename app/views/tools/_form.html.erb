@@ -15,7 +15,10 @@
 
   <div class="form-group mb-3">
     <%= f.label :tool_type, "Catégorie" %>
-    <%= f.text_field :tool_type, class: "form-control" %>
+    <%= f.text_field :tool_type,
+      value: Array(tool.tool_type).join(", "),
+      class: "form-control",
+      placeholder: "Ex. : data analyse, data visualisation" %>
   </div>
 
   <% if tool.persisted? && tool.tool_photo.attached? %>
