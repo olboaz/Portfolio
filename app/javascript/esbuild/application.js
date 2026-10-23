@@ -1,10 +1,7 @@
 import "@hotwired/turbo-rails";
-import * as ActiveStorage from "@rails/activestorage";
 import $ from "jquery";
 import "./image_previews";
 import "./project_gallery";
-
-ActiveStorage.start();
 
 window.$ = $;
 window.jQuery = $;
