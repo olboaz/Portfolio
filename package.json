@@ -12,7 +12,7 @@
   "dependencies": {
     "@hotwired/turbo-rails": "^8.0.23",
     "bootstrap": "^4.5.0",
-    "esbuild": "0.25.0",
+    "esbuild": "0.28.2",
     "jquery": "3.7.1",
     "popper.js": "^1.16.1",
     "sass": "1.106.1"
