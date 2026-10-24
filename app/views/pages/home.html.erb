@@ -9,14 +9,14 @@
       </div>
 
       <div class="intro">
-        <div class="intro-image">
-         <%= image_tag "profil.webp",
-            alt: "Portrait de Patrice Jaszczynski",
-            width: "533",
-            height: "617",
-            srcset: "#{asset_path('profil-mobile.webp')} 460w, #{asset_path('profil.webp')} 916w",
-            sizes: "(max-width: 600px) 100vw, 533px",
-            fetchpriority: "high" %>
+        <div class="intro-image"> 
+          <%= image_tag "profil.webp",
+              alt: "Portrait de Patrice Jaszczynski",
+              width: "533",
+              height: "617",
+              srcset: "#{asset_path('profil-mobile.webp')} 460w, #{asset_path('profil-700.webp')} 700w, #{asset_path('profil.webp')} 916w",
+              sizes: "(max-width: 600px) 100vw, 533px",
+              fetchpriority: "high" %>
         </div>
         <div class="intro-desc">
           <div class="main-text main-text--offset">
