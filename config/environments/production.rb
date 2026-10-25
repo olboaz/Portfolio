@@ -26,6 +26,13 @@ Rails.application.configure do
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.headers = {
+    "Cache-Control" => "public, max-age=3600"
+  }
+
+  require Rails.root.join("app/middleware/asset_cache_headers")
+
+  config.middleware.insert_before ActionDispatch::Static, AssetCacheHeaders
 
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
