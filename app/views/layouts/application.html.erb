@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
 
     <%= csrf_meta_tags %>
@@ -37,7 +37,10 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
 
-    <%= yield %>
+    <main id="main-content">
+      <%= yield %>
+    </main>
+
     <footer class="text-center py-4 mt-5 border-top">
       <div class="container">
         <p class="mb-2 text-muted">

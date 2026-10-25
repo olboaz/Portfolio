@@ -2,7 +2,7 @@
   <div data-ix="scroll-appear" class="row section-part">
     <div class="container-part">
       <div id="intro" data-scroll="0.6" class="section-intro">
-        <div class="header-section">A propos</div>
+        <h2 class="header-section">A propos</h2>
           <div class="lines">
             <div class="line"></div>
           </div>
@@ -45,7 +45,7 @@
   <div class="container-part" id="services">
     <div class="section-part" data-ix="scroll-appear">
       <div id="intro" data-scroll="0.6" class="section-intro">
-        <div class="header-section">Services</div>
+        <h2 class="header-section">Services</h2>
         <div class="lines">
           <div class="line"></div>
         </div>
@@ -75,7 +75,7 @@
   <div class="container-part" id="portfolio">
     <div class="section-part" data-ix="scroll-appear">
       <div id="intro" data-scroll="0.6" class="section-intro">
-        <div class="header-section">Portfolio</div>
+        <h2 class="header-section">Portfolio</h2>
         <div class="lines">
           <div class="line"></div>
         </div>
@@ -99,7 +99,7 @@
                   ) %>
                 </div>
                 <div class="portfolio-intro">
-                  <h6><%= project.name %></h6>
+                  <h3><%= project.name %></h3>
                   <p><%= project.project_type %></p>
                 </div>
               <% end %>
@@ -115,7 +115,7 @@
   <div class="container-part" id="skills">
     <div class="section-part" data-ix="scroll-appear">
       <div id="intro" data-scroll="0.6" class="section-intro">
-        <div class="header-section">Compétences</div>
+        <h2 class="header-section">Compétences</h2>
         <div class="lines">
           <div class="line"></div>
         </div>
@@ -124,10 +124,9 @@
       <div class="skill-cards">
         <% @tools.each do |tool| %>
           <div class="skill-card">
-              <div class="skill-img" title="<%= tool.name.upcase %>">
-                <%= cl_image_tag tool.tool_photo.key, width: 100, crop: :fit, fetch_format: :auto, quality: :auto, loading: "lazy", decoding: "async" %>
-              </div>
-               <div class="overlay"><%= tool.name.upcase %></div>
+            <div class="skill-img" title="<%= tool.name.upcase %>">
+              <%= cl_image_tag tool.tool_photo.key, width: 100, crop: :fit, fetch_format: :auto, quality: :auto, alt: "Logo #{tool.name}", loading: "lazy", decoding: "async" %>              </div>
+            <div class="overlay"><%= tool.name.upcase %></div>
           </div>
         <% end %>
       </div>
@@ -138,7 +137,7 @@
   <div class="container-part" id="contact">
     <div class="section-part" data-ix="scroll-appear">
       <div id="intro" data-scroll="0.6" class="section-intro">
-        <div class="header-section">Contact</div>
+        <h2 class="header-section">Contact</h2>
         <div class="lines">
           <div class="line"></div>
         </div>
