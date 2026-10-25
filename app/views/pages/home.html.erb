@@ -87,7 +87,15 @@
             <div class="portfolio-card">
               <%= link_to project_path(project) do %>
                 <div class="portfolio-img">
-                  <%= cl_image_tag(project.project_photo.key, { width: 800, crop: :fit, fetch_format: :auto, quality: :auto, loading: "lazy", decoding: "async" }) %>
+                  <%= cl_image_tag(
+                    project.project_photo.key,
+                    width: 648,
+                    crop: :fit,
+                    fetch_format: :auto,
+                    quality: :auto,
+                    loading: "lazy",
+                    decoding: "async"
+                  ) %>
                 </div>
                 <div class="portfolio-intro">
                   <h6><%= project.name %></h6>
