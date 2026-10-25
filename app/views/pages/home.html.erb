@@ -116,7 +116,7 @@
         <% @tools.each do |tool| %>
           <div class="skill-card">
               <div class="skill-img" title="<%= tool.name.upcase %>">
-                <%= cl_image_tag tool.tool_photo.key, width: 648, crop: :fit, loading: "lazy", decoding: "async" %>
+                <%= cl_image_tag tool.tool_photo.key, width: 100, crop: :fit, fetch_format: :auto, quality: :auto, loading: "lazy", decoding: "async" %>
               </div>
                <div class="overlay"><%= tool.name.upcase %></div>
           </div>
