@@ -8,7 +8,10 @@ window.jQuery = $;
 
 // Bootstrap 4 utilise jQuery.
 // On le charge après avoir exposé jQuery globalement.
-require("bootstrap");
+require("bootstrap/js/dist/alert");
+require("bootstrap/js/dist/collapse");
+require("bootstrap/js/dist/dropdown");
+require("bootstrap/js/dist/modal");
 
 const initializedBackToTopButtons = new WeakSet();
 
