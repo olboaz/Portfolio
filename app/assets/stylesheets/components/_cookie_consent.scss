@@ -1,0 +1,81 @@
+/* Bandeau de consentement Google Analytics */
+
+.cookie-consent-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 10000;
+
+  width: calc(100% - 48px);
+  max-width: 420px;
+  padding: 22px 24px;
+
+  background: #ffffff;
+  color: #252b35;
+
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+
+  box-shadow: 0 8px 32px rgba(30, 35, 45, 0.12);
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.cookie-consent-banner[hidden] {
+  display: none !important;
+}
+
+.cookie-consent-banner strong {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.cookie-consent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cookie-consent-actions .btn {
+  flex: 1;
+  min-height: 38px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.cookie-consent-actions .btn-primary {
+  background: #252b35;
+  border-color: #252b35;
+}
+
+.cookie-consent-actions .btn-primary:hover {
+  background: #b45346;
+  border-color: #b45346;
+}
+
+.cookie-consent-banner a {
+  color: #b45346;
+}
+
+.cookie-consent-banner a:hover {
+  color: #873c32;
+}
+
+@media (max-width: 767px) {
+  .cookie-consent-banner {
+    bottom: 16px;
+    left: 16px;
+
+    width: calc(100% - 32px);
+    max-width: none;
+
+    padding: 18px 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .cookie-consent-actions {
+    flex-direction: column;
+  }
+}

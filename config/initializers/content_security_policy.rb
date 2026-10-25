@@ -5,7 +5,8 @@ Rails.application.config.content_security_policy do |policy|
   policy.default_src :self
 
   policy.script_src :self,
-                    "https://challenges.cloudflare.com"
+                  "https://challenges.cloudflare.com",
+                  "https://www.googletagmanager.com"
 
   policy.style_src :self, "https://fonts.googleapis.com"
 
@@ -13,10 +14,15 @@ Rails.application.config.content_security_policy do |policy|
                   "https://fonts.gstatic.com",
                   "https://db.onlinewebfonts.com"
 
-  policy.img_src :self, "https://res.cloudinary.com", :data, :blob
+  policy.img_src :self,
+               "https://res.cloudinary.com",
+               "https://www.google-analytics.com",
+               :data, :blob
 
   policy.connect_src :self,
-                     "https://challenges.cloudflare.com"
+                   "https://challenges.cloudflare.com",
+                   "https://www.google-analytics.com",
+                   "https://region1.google-analytics.com"
 
   policy.frame_src "https://challenges.cloudflare.com"
 

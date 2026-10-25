@@ -1,5 +1,7 @@
 import "@hotwired/turbo-rails";
 import $ from "jquery";
+import { trackPageView } from "./analytics";
+import { initializeCookieConsent } from "./cookie_consent";
 import "./image_previews";
 import "./project_gallery";
 
@@ -185,3 +187,9 @@ function scrollToContactErrors() {
 document.addEventListener("turbo:load", scrollToContactErrors);
 document.addEventListener("turbo:render", scrollToContactErrors);
 window.addEventListener("load", scrollToContactErrors);
+
+// Google Analytics 4 — consentement et navigation Turbo 8
+document.addEventListener("turbo:load", () => {
+  initializeCookieConsent();
+  trackPageView();
+});

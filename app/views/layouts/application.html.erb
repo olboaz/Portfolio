@@ -50,6 +50,16 @@
         <%= link_to "Politique de confidentialité",
                     privacy_path,
                     class: "text-muted small" %>
+
+        <span class="text-muted mx-2">·</span>
+
+        <button
+          type="button"
+          id="manage-cookie-consent"
+          class="btn btn-link text-muted small p-0"
+        >
+          Gérer les cookies
+        </button>
       </div>
     </footer>
     <button
@@ -60,5 +70,6 @@
     >
       ↑
     </button>
+    <%= render "shared/cookie_banner" %>
   </body>
 </html>
