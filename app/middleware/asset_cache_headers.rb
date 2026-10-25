@@ -13,6 +13,8 @@ class AssetCacheHeaders
     if (status == 200 || status == 304) &&
        env["REQUEST_METHOD"].to_s.match?(/\A(?:GET|HEAD)\z/) &&
        FINGERPRINTED_ASSET.match?(path)
+      headers.delete("Cache-Control")
+      headers.delete("cache-control")
       headers["cache-control"] = "public, max-age=31536000, immutable"
     end
 
